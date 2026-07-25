@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Solutions — INSIGNIA</title>
+<meta name="description" content="Explore INSIGNIA's ERP platform, AI automation and digital marketing solutions, and see how each industry grows with them.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.js"></script>
+<style>
+.pagehead{padding:80px 0 60px;text-align:center}
+.pagehead h1{font-size:56px;max-width:760px;margin:20px auto 0}
+.pagehead p{font-size:18px;max-width:600px;margin:20px auto 0}
+.subnav{position:sticky;top:76px;z-index:40;background:var(--bg2);border-bottom:1px solid var(--border-soft)}
+.subnav .wrap{display:flex;gap:32px;padding:16px 32px;overflow-x:auto}
+.subnav a{font-size:14px;font-weight:700;color:var(--fg-soft);white-space:nowrap}
+.subnav a:hover{color:var(--fg)}
+.mod-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:90px}
+.mod-block:last-child{margin-bottom:0}
+.mod-block.rev{grid-template-columns:1fr 1fr}
+.mod-block.rev .mod-text{order:2}
+.mod-text h3{font-size:32px;margin-bottom:14px}
+.mod-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.mod-list li{font-size:15px;color:var(--fg-muted);padding-left:22px;position:relative}
+.mod-list li:before{content:'';position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.pill-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.pill-grid span{font-size:13px;font-weight:700;color:var(--fg-soft);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:8px 16px}
+.ai-card,.mk-card{padding:30px}
+.ai-card h4,.mk-card h4{font-size:18px;margin:16px 0 8px}
+.ai-card p,.mk-card p{font-size:14px}
+.ind-block{display:grid;grid-template-columns:.5fr 1fr;gap:36px;padding:36px 0;border-top:1px solid var(--border);align-items:start}
+.ind-block:last-child{}
+.ind-block h4{font-size:24px;margin-bottom:6px}
+.ind-block .tag{color:var(--accent-dark)}
+.ind-block ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.ind-block ul li{font-size:14px;color:var(--fg-muted);padding-left:20px;position:relative}
+.ind-block ul li:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.cta-band{background:linear-gradient(135deg,var(--accent-soft),var(--accent2-soft));border:1px solid var(--border);box-shadow:var(--glow);border-radius:var(--radius-lg);padding:80px;text-align:center;color:#fff}
+.cta-band h2{color:#fff;font-size:40px;margin-bottom:16px}
+.cta-band p{color:var(--fg-muted);font-size:17px;margin-bottom:32px}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+/* industries interactive */
+#industries{overflow:hidden}
+.ind-mesh{position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(700px 500px at 15% 0%,oklch(28% .08 292 / .5),transparent 60%),radial-gradient(600px 460px at 100% 30%,oklch(26% .09 350 / .4),transparent 60%),repeating-linear-gradient(0deg,oklch(100% 0 0 / .015) 0 1px,transparent 1px 48px),repeating-linear-gradient(90deg,oklch(100% 0 0 / .015) 0 1px,transparent 1px 48px)}
+.ind-stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:0 0 80px}
+.ind-stat{text-align:center;padding:28px 12px;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface2)}
+.ind-stat .n{font-size:38px;font-weight:900;color:var(--fg);letter-spacing:-.02em}
+.ind-stat .l{font-size:13px;color:var(--fg-soft);font-weight:600;margin-top:6px}
+.ind-shell{position:relative;z-index:1;display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start}
+.ind-nav{display:flex;flex-direction:column;gap:6px;position:sticky;top:170px}
+.ind-nav-item{display:flex;align-items:center;gap:14px;text-align:left;background:transparent;border:1px solid transparent;border-radius:var(--radius-sm);padding:14px 16px;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease;color:var(--fg-muted);position:relative;overflow:hidden}
+.ind-nav-item svg{width:20px;height:20px;flex-shrink:0;stroke:currentColor;transition:color .2s ease}
+.ind-nav-item b{display:block;font-size:14.5px;font-weight:700;color:inherit}
+.ind-nav-item small{display:block;font-size:12px;color:var(--fg-soft);font-weight:500;margin-top:2px}
+.ind-nav-item:hover{background:var(--surface2);transform:translateX(2px)}
+.ind-nav-item.active{background:var(--accent-soft);border-color:oklch(45% .1 292 / .5);color:var(--fg)}
+.ind-nav-item.active:before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:2px;background:linear-gradient(180deg,var(--accent),var(--accent2))}
+.ind-panels{position:relative;min-height:520px}
+.ind-panel{display:none}
+.ind-panel.active{display:block;animation:indIn .45s ease}
+@keyframes indIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.ind-panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.ind-panel-text h3{font-size:30px;margin-bottom:14px;max-width:480px}
+.ind-panel-text p{font-size:15.5px;max-width:440px}
+.ind-check{list-style:none;display:flex;flex-direction:column;gap:13px;margin:24px 0}
+.ind-check li{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--fg);font-weight:600}
+.ind-check li i{width:22px;height:22px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ind-check li svg{width:13px;height:13px;stroke:var(--green)}
+.ind-outcomes{display:flex;gap:10px;flex-wrap:wrap}
+.ind-outcomes span{font-size:12.5px;font-weight:700;color:var(--accent-dark);background:var(--accent-soft);border:1px solid oklch(45% .1 292 / .4);border-radius:999px;padding:7px 14px}
+.ind-panel-visual{position:relative}
+.ind-panel-visual .browser{transform:rotateX(4deg) rotateY(-6deg);transition:transform .4s ease}
+.ind-panel-visual:hover .browser{transform:rotateX(2deg) rotateY(-3deg)}
+.ind-float{position:absolute;bottom:-18px;left:-24px;animation:float 6s ease-in-out infinite}
+@media(max-width:1100px){.ind-nav{position:static}.ind-shell{grid-template-columns:1fr}.ind-nav{flex-direction:row;overflow-x:auto;gap:10px;padding-bottom:6px}.ind-nav-item{flex:0 0 auto;white-space:nowrap}.ind-nav-item small{display:none}.ind-float{display:none}}
+@media(max-width:960px){.mod-block,.mod-block.rev{grid-template-columns:1fr}.mod-block.rev .mod-text{order:0}.ind-block{grid-template-columns:1fr}.pagehead h1{font-size:36px}.ind-stats{grid-template-columns:1fr 1fr}.ind-panel-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+<div class="logo">INSIGNIA</div>
+<div class="navlinks">
+<a href="solutions.html" class="active">Solutions</a>
+<a href="solutions.html#industries">Industries</a>
+<a href="solutions.html#erp">ERP</a>
+<a href="solutions.html#ai">AI</a>
+<a href="pricing.html">Pricing</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="navcta"><a href="contact.html" class="btn btn-accent btn-sm">Book Demo</a><button class="navtoggle" id="navtoggle" aria-label="Menu"><span></span><span></span><span></span></button></div>
+</div></nav>
+
+<header class="pagehead" data-screen-label="solutions-header">
+<div class="wrap"><span class="eyebrow">Solutions</span><h1>One platform for ERP, AI and growth</h1><p>Every module is built on the same data model — so sales, inventory, finance and marketing stay in sync without manual reconciliation.</p></div>
+</header>
+
+<div class="subnav"><div class="wrap">
+<a href="#erp">ERP Platform</a><a href="#ai">AI Automation</a><a href="#marketing">Digital Marketing</a><a href="#industries">Industries</a>
+</div></div>
+
+<section id="erp" data-screen-label="erp">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">ERP Platform</span><h2 style="margin-top:20px;font-size:40px">Run the whole business from one system</h2></div>
+
+<div class="mod-block">
+<div class="mod-text"><span class="tag">Sales &amp; CRM</span><h3>Pipeline to invoice, without the gaps</h3><p>Track leads, quotes and customer health, then convert straight into invoices with GST handled automatically.</p><ul class="mod-list"><li>Customer profiles with credit limits and ratings</li><li>Pipeline value by stage</li><li>Direct invoicing with multi-level approvals</li></ul></div>
+<div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash">
+<div class="dash-title">Customers</div><div class="dash-sub">Manage customer accounts, credit limits and CRM profile</div>
+<div class="chart-card"><div class="bars"><i style="height:70%"></i><i style="height:40%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:30%"></i></div></div>
+</div></div>
+</div>
+
+<div class="mod-block rev">
+<div class="mod-text"><span class="tag">Inventory &amp; Warehousing</span><h3>Never lose track of a batch again</h3><p>Multi-warehouse stock, expiry tracking and automated reorder alerts, down to the batch level.</p><ul class="mod-list"><li>Expiry register across all warehouses</li><li>Dead stock and reorder alerts</li><li>Transfers, cycle counts and damage reports</li></ul></div>
+<div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash">
+<div class="dash-title">Warehouse Dashboard</div><div class="dash-sub">Locations, transfers, counts and fulfillment across all warehouses</div>
+<div class="dash-stats"><div class="stat"><div class="label">Bin Locations</div><div class="val">16</div></div><div class="stat"><div class="label">Expiring (60d)</div><div class="val">3</div></div></div>
+</div></div>
+</div>
+
+<div class="mod-block">
+<div class="mod-text"><span class="tag">Finance &amp; Accounting</span><h3>Books that close themselves</h3><p>Bank reconciliation, GST &amp; TDS tracking and credit notes, automated end to end.</p><ul class="mod-list"><li>Auto-matched bank reconciliation</li><li>GST output/input and TDS register</li><li>Credit notes tied to stock returns</li></ul></div>
+<div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash">
+<div class="dash-title">GST &amp; TDS</div><div class="dash-sub">GST output/input summary, tax register and TDS tracking</div>
+<div class="dash-stats"><div class="stat"><div class="label">GST Output</div><div class="val">₹70,177</div></div><div class="stat"><div class="label">Net Payable</div><div class="val">−₹964</div></div></div>
+</div></div>
+</div>
+
+<div class="mod-text center" style="max-width:700px;margin:0 auto">
+<div class="pill-grid" style="justify-content:center"><span>HRMS</span><span>Manufacturing</span><span>Purchase</span><span>Reports &amp; Analytics</span></div>
+</div>
+</div>
+</section>
+
+<section id="ai" style="background:var(--surface)" data-screen-label="ai">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">AI Automation</span><h2 style="margin-top:20px;font-size:40px">Agents that do the busywork</h2><p>Insignia's AI layer reads documents, watches thresholds and talks to customers — so your team works on decisions, not data entry.</p></div>
+<div class="grid-4">
+<div class="card ai-card"><div class="icon-tile">◈</div><h4>AI Agents</h4><p>Autonomous agents that monitor stock, cash and pipeline, and flag what needs attention.</p></div>
+<div class="card ai-card"><div class="icon-tile">⇄</div><h4>Workflow Automation</h4><p>Approvals, escalations and handoffs that run without a spreadsheet in sight.</p></div>
+<div class="card ai-card"><div class="icon-tile">▤</div><h4>Document AI</h4><p>Invoices, quotes and bills read, matched and filed automatically.</p></div>
+<div class="card ai-card"><div class="icon-tile">✆</div><h4>WhatsApp AI</h4><p>Order updates, reminders and support, sent where your customers already are.</p></div>
+<div class="card ai-card"><div class="icon-tile">◔</div><h4>Chatbots</h4><p>Trained on your catalog and policies to qualify leads around the clock.</p></div>
+<div class="card ai-card"><div class="icon-tile">◉</div><h4>Voice AI</h4><p>Inbound and outbound calls handled naturally, logged straight into your CRM.</p></div>
+<div class="card ai-card"><div class="icon-tile">✦</div><h4>Predictive Analytics</h4><p>Forecast demand, churn and cash position before they become problems.</p></div>
+</div>
+</div>
+</section>
+
+<section id="marketing" data-screen-label="marketing">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Digital Marketing</span><h2 style="margin-top:20px;font-size:40px">Fill the pipeline your ERP will run on</h2></div>
+<div class="grid-4">
+<div class="card mk-card"><div class="icon-tile">◧</div><h4>SEO</h4><p>Rank for the searches your buyers actually make.</p></div>
+<div class="card mk-card"><div class="icon-tile">◎</div><h4>Google Ads</h4><p>Performance campaigns tied to real pipeline, not just clicks.</p></div>
+<div class="card mk-card"><div class="icon-tile">◈</div><h4>Facebook &amp; Instagram</h4><p>Brand and demand campaigns built for your category.</p></div>
+<div class="card mk-card"><div class="icon-tile">◔</div><h4>Lead Generation</h4><p>Qualified leads delivered straight into your CRM pipeline.</p></div>
+<div class="card mk-card"><div class="icon-tile">✦</div><h4>Branding</h4><p>A premium identity that matches how you sell.</p></div>
+<div class="card mk-card"><div class="icon-tile">▭</div><h4>Website Design</h4><p>Fast, conversion-focused sites built to close.</p></div>
+<div class="card mk-card"><div class="icon-tile">⇄</div><h4>Funnels</h4><p>Landing pages and sequences engineered around outcomes.</p></div>
+<div class="card mk-card"><div class="icon-tile">✆</div><h4>Email Marketing</h4><p>Lifecycle campaigns that keep customers coming back.</p></div>
+</div>
+</div>
+</section>
+
+<section id="industries" style="background:var(--surface)" data-screen-label="industries">
+<div class="ind-mesh"></div>
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Industries</span><h2 style="margin-top:20px;font-size:44px">ERP built around the way your industry works</h2><p>Every industry has unique workflows. Insignia adapts to your business instead of forcing your business to adapt to software.</p></div>
+
+<div class="ind-stats">
+<div class="ind-stat"><div class="n" data-count="30">0</div><div class="l">Business Modules</div></div>
+<div class="ind-stat"><div class="n" data-count="25">0</div><div class="l">Industry Workflows</div></div>
+<div class="ind-stat"><div class="n" data-count="100">0</div><div class="l">Automation Rules</div></div>
+<div class="ind-stat"><div class="n" data-count="99.9" data-suffix="%">0</div><div class="l">Cloud Uptime</div></div>
+</div>
+
+<div class="ind-shell">
+<div class="ind-nav" role="tablist">
+<button class="ind-nav-item active" data-target="manufacturing"><i data-lucide="factory"></i><span class="nav-txt"><b>Manufacturing</b><small>Production &amp; batch control</small></span></button>
+<button class="ind-nav-item" data-target="distribution"><i data-lucide="truck"></i><span class="nav-txt"><b>Distribution</b><small>Multi-location stock</small></span></button>
+<button class="ind-nav-item" data-target="retail"><i data-lucide="shopping-bag"></i><span class="nav-txt"><b>Retail</b><small>Store to head office</small></span></button>
+<button class="ind-nav-item" data-target="healthcare"><i data-lucide="heart-pulse"></i><span class="nav-txt"><b>Healthcare</b><small>Regulated compliance</small></span></button>
+<button class="ind-nav-item" data-target="hospitality"><i data-lucide="hotel"></i><span class="nav-txt"><b>Hospitality</b><small>F&amp;B &amp; supply cost</small></span></button>
+<button class="ind-nav-item" data-target="automobile"><i data-lucide="car"></i><span class="nav-txt"><b>Automobile</b><small>Parts &amp; dealer finance</small></span></button>
+<button class="ind-nav-item" data-target="education"><i data-lucide="graduation-cap"></i><span class="nav-txt"><b>Education</b><small>Fees &amp; procurement</small></span></button>
+<button class="ind-nav-item" data-target="construction"><i data-lucide="hard-hat"></i><span class="nav-txt"><b>Construction</b><small>Project &amp; site finance</small></span></button>
+</div>
+
+<div class="ind-panels">
+
+<div class="ind-panel active" data-panel="manufacturing"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">01 · Manufacturing</span><h3>Raw material to finished goods, fully visible</h3><p>Production, quality and cost tracked in one system, so nothing slips between the factory floor and the ledger.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>AI Production Planning</li><li><i data-lucide="check"></i>Batch &amp; Expiry Tracking</li><li><i data-lucide="check"></i>Multi-Stage Production Costing</li><li><i data-lucide="check"></i>Machine Maintenance Alerts</li><li><i data-lucide="check"></i>Automated Purchase Workflow</li></ul>
+<div class="ind-outcomes"><span>Compliance ready</span><span>Full batch traceability</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">Expiry Register</div><div class="dash-sub">Track batches nearing or past expiry across all warehouses</div><div class="dash-stats"><div class="stat"><div class="label">Expiring Soon</div><div class="val">3</div></div><div class="stat"><div class="label">Active Batches</div><div class="val">7</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>AI flagged 3 expiring batches</div></div>
+</div></div>
+
+<div class="ind-panel" data-panel="distribution"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">02 · Distribution</span><h3>Every warehouse, dealer and unit in transit — visible</h3><p>Multi-location stock and dealer networks managed without losing a single unit or a single reconciliation.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>Multi-Warehouse Stock Visibility</li><li><i data-lucide="check"></i>Dealer Credit &amp; Rating</li><li><i data-lucide="check"></i>Transfer &amp; Damage Tracking</li><li><i data-lucide="check"></i>Real-Time Stock Heat Maps</li><li><i data-lucide="check"></i>Automated Reorder Alerts</li></ul>
+<div class="ind-outcomes"><span>Zero stock blind spots</span><span>Faster dealer settlements</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">Warehouse Dashboard</div><div class="dash-sub">Locations, transfers, counts and fulfillment across all warehouses</div><div class="dash-stats"><div class="stat"><div class="label">Warehouses</div><div class="val">2</div></div><div class="stat"><div class="label">Pending Transfers</div><div class="val">1</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>Stock heat map updated live</div></div>
+</div></div>
+
+<div class="ind-panel" data-panel="retail"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">03 · Retail Chains</span><h3>Every outlet, one source of truth</h3><p>Run every store on the same data, from POS to head-office reporting, with loyalty and CRM built in.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>Store-Level Sales Rollups</li><li><i data-lucide="check"></i>Centralized GST &amp; TDS</li><li><i data-lucide="check"></i>Customer Loyalty &amp; CRM</li><li><i data-lucide="check"></i>Multi-Outlet Reporting</li><li><i data-lucide="check"></i>Automated Reconciliation</li></ul>
+<div class="ind-outcomes"><span>One view, every outlet</span><span>Faster month-end close</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">CRM Dashboard</div><div class="dash-sub">Customer health, pipeline, tickets and follow-ups at a glance</div><div class="dash-stats"><div class="stat"><div class="label">Active Customers</div><div class="val">5</div></div><div class="stat"><div class="label">Avg Rating</div><div class="val">3.7/5</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>Loyalty synced across outlets</div></div>
+</div></div>
+
+<div class="ind-panel" data-panel="healthcare"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">04 · Healthcare</span><h3>Regulated stock, always compliant</h3><p>Automated expiry and batch controls keep regulated inventory audit-ready, without manual spreadsheets.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>Expiry Compliance Alerts</li><li><i data-lucide="check"></i>Batch-Level Traceability</li><li><i data-lucide="check"></i>Vendor &amp; Purchase Management</li><li><i data-lucide="check"></i>Regulatory Reporting</li><li><i data-lucide="check"></i>Automated Stock Audits</li></ul>
+<div class="ind-outcomes"><span>Audit-ready always</span><span>Zero compliance surprises</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">Expiry Register</div><div class="dash-sub">Track batches nearing or past expiry across all warehouses</div><div class="dash-stats"><div class="stat"><div class="label">Expired</div><div class="val">1</div></div><div class="stat"><div class="label">Expiring Soon</div><div class="val">2</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>Batch traced in one click</div></div>
+</div></div>
+
+<div class="ind-panel" data-panel="hospitality"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">05 · Hospitality</span><h3>F&amp;B costs, under control</h3><p>Perishable stock and multi-outlet purchasing reconciled daily, so margins stay predictable.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>Perishable Stock Management</li><li><i data-lucide="check"></i>Multi-Outlet Purchase Consolidation</li><li><i data-lucide="check"></i>Daily Cash Reconciliation</li><li><i data-lucide="check"></i>Vendor Bill Automation</li><li><i data-lucide="check"></i>F&amp;B Cost Control</li></ul>
+<div class="ind-outcomes"><span>Predictable margins</span><span>Same-day reconciliation</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">Financial Dashboard</div><div class="dash-sub">Cash position, receivables, payables and profitability at a glance</div><div class="dash-stats"><div class="stat"><div class="label">Cash Balance</div><div class="val">₹69,500</div></div><div class="stat"><div class="label">Payables</div><div class="val">₹66,937</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>Cash reconciled overnight</div></div>
+</div></div>
+
+<div class="ind-panel" data-panel="automobile"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">06 · Automobile</span><h3>Parts, service and dealer finance, unified</h3><p>Manage parts inventory across service centers and dealer receivables in a single system.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>Parts Inventory Across Centers</li><li><i data-lucide="check"></i>Dealer Credit &amp; Receivables</li><li><i data-lucide="check"></i>Automated Reconciliation</li><li><i data-lucide="check"></i>Service Billing Automation</li><li><i data-lucide="check"></i>Warranty Claim Tracking</li></ul>
+<div class="ind-outcomes"><span>Faster service billing</span><span>Dealer finance in sync</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">Customers</div><div class="dash-sub">Manage dealer accounts, credit limits and service profile</div><div class="dash-stats"><div class="stat"><div class="label">Active Dealers</div><div class="val">5</div></div><div class="stat"><div class="label">Credit Limit</div><div class="val">₹10L</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>Warranty claim auto-filed</div></div>
+</div></div>
+
+<div class="ind-panel" data-panel="education"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">07 · Education</span><h3>Institutional finance, enterprise rigor</h3><p>Run fee collection, procurement and reporting with the same discipline as any large enterprise.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>Fee &amp; Receivables Tracking</li><li><i data-lucide="check"></i>Vendor &amp; Procurement Management</li><li><i data-lucide="check"></i>Consolidated Financial Reporting</li><li><i data-lucide="check"></i>Multi-Campus Visibility</li><li><i data-lucide="check"></i>Automated Approvals</li></ul>
+<div class="ind-outcomes"><span>One ledger, every campus</span><span>Faster fee collection</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">Financial Dashboard</div><div class="dash-sub">Cash position, receivables, payables and profitability at a glance</div><div class="dash-stats"><div class="stat"><div class="label">Receivables</div><div class="val">₹1,15,321</div></div><div class="stat"><div class="label">Pending Approvals</div><div class="val">2</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>Fee approval auto-routed</div></div>
+</div></div>
+
+<div class="ind-panel" data-panel="construction"><div class="ind-panel-grid">
+<div class="ind-panel-text"><span class="tag">08 · Construction</span><h3>Every project, vendor and site — one dashboard</h3><p>Track project-wise expense, vendor bills and cash flow across sites without switching systems.</p>
+<ul class="ind-check"><li><i data-lucide="check"></i>Project-Wise Expense Tracking</li><li><i data-lucide="check"></i>Vendor Bills &amp; Approvals</li><li><i data-lucide="check"></i>Cash Position Across Sites</li><li><i data-lucide="check"></i>Purchase-to-Payables Automation</li><li><i data-lucide="check"></i>Multi-Site Reporting</li></ul>
+<div class="ind-outcomes"><span>Cost overruns caught early</span><span>One view, every site</span></div></div>
+<div class="ind-panel-visual"><div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash"><div class="dash-title">Executive Dashboard</div><div class="dash-sub">Cross-module KPIs for sales, purchasing, inventory and finance</div><div class="dash-stats"><div class="stat"><div class="label">Cash Position</div><div class="val">₹9,37,003</div></div><div class="stat"><div class="label">Payables</div><div class="val">₹71,337</div></div></div></div></div><div class="float-card ind-float"><span class="dot"></span>Site expense flagged over budget</div></div>
+</div></div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section data-screen-label="cta"><div class="wrap"><div class="cta-band"><h2>Ready to build your industry's digital backbone?</h2><p>Book a personalized ERP demonstration and discover how Insignia transforms operations with AI-powered automation.</p><div class="cta-actions"><a href="contact.html" class="btn btn-accent">Book Demo</a><a href="contact.html" class="btn btn-ghost">Talk to Expert</a></div></div></div></section>
+
+<footer data-screen-label="footer"><div class="wrap">
+<div class="cols">
+<div class="fcol"><div class="logo" style="color:#fff">INSIGNIA</div><p style="color:oklch(65% .008 260);font-size:14px;margin-top:16px;max-width:260px">Transforming businesses with AI, ERP and automation.</p></div>
+<div class="fcol"><h4>Company</h4><ul><li><a href="contact.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html">Careers</a></li></ul></div>
+<div class="fcol"><h4>Solutions</h4><ul><li><a href="solutions.html#erp">ERP Platform</a></li><li><a href="solutions.html#ai">AI Automation</a></li><li><a href="solutions.html#marketing">Digital Marketing</a></li></ul></div>
+<div class="fcol"><h4>Resources</h4><ul><li><a href="pricing.html">Pricing</a></li><li><a href="solutions.html#industries">Industries</a></li></ul></div>
+<div class="fcol"><h4>Legal</h4><ul><li><a href="contact.html">Privacy</a></li><li><a href="contact.html">Terms</a></li></ul></div>
+</div>
+<div class="bottom"><span>© 2026 Insignia. All rights reserved.</span><span>LinkedIn · X · YouTube</span></div>
+</div></footer>
+<script>(function(){var t=document.getElementById("navtoggle"),n=document.querySelector(".navlinks");if(t){t.addEventListener("click",function(){t.classList.toggle("open");n.classList.toggle("open")})}
+if(window.lucide)lucide.createIcons();
+var navItems=document.querySelectorAll('.ind-nav-item'),panels=document.querySelectorAll('.ind-panel');
+navItems.forEach(function(btn){btn.addEventListener('click',function(){navItems.forEach(function(b){b.classList.remove('active')});panels.forEach(function(p){p.classList.remove('active')});btn.classList.add('active');document.querySelector('.ind-panel[data-panel="'+btn.dataset.target+'"]').classList.add('active')})});
+var counted=false;
+var statsEl=document.querySelector('.ind-stats');
+if(statsEl){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&!counted){counted=true;document.querySelectorAll('.ind-stat .n').forEach(function(el){var target=parseFloat(el.dataset.count),suffix=el.dataset.suffix||'+',start=0,dur=1200,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1);var val=target*p;el.textContent=(target%1===0?Math.round(val):val.toFixed(1))+suffix;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)})}})},{threshold:.4});obs.observe(statsEl)}
+})();</script>
+</body>
+</html>
