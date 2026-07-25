@@ -6,14 +6,23 @@ const WA_DEFAULTS = /*EDITMODE-BEGIN*/{
 "autoOpenDelay": 4
 }/*EDITMODE-END*/;
 
-function botReply(msg){
+const FALLBACKS=["Got it — one of our specialists can go deeper on that. Want to book a free consultation?","Happy to help further — I can loop in our team for the specifics. Shall I pass this along?","That's a great one for our specialists to walk you through live. Want me to set that up?"];
+let fallbackIdx=0;
+
+function botReply(msg,lastWasBooking){
 const m=msg.toLowerCase();
+if(/^(yes|yep|yeah|sure|ok|okay|please|yes please)\W*$/.test(m.trim())){
+if(lastWasBooking)return "Great — head to the Contact page and drop your details, or share your email/phone here and we'll reach out within a business day.";
+return "Sounds good — could you tell me a bit more about what you're looking for (ERP, AI automation, or marketing)?";
+}
 if(m.includes('price')||m.includes('cost')||m.includes('pricing'))return "Every plan is scoped to your modules and users, so pricing is a custom quote. Want me to connect you with our team?";
 if(m.includes('demo'))return "I can get a free demo booked for you — head to the Contact page and we'll follow up within a business day.";
 if(m.includes('erp'))return "Our ERP covers Sales, Inventory, HRMS, Finance and Manufacturing in one system. Want details on a specific module?";
 if(m.includes('ai'))return "Insignia's AI layer handles document reading, WhatsApp automation, voice AI and predictive analytics. What would you like automated?";
 if(m.includes('hi')||m.includes('hello')||m.includes('hey'))return "Hello! Happy to help — are you looking into ERP, AI automation, or digital marketing?";
-return "Got it — one of our specialists can go deeper on that. Want to book a free consultation?";
+const reply=FALLBACKS[fallbackIdx%FALLBACKS.length];
+fallbackIdx++;
+return reply;
 }
 
 function WhatsAppWidget(){
@@ -43,7 +52,9 @@ if(!val)return;
 setMsgs(m=>[...m,{from:'user',text:val}]);
 setInput('');
 setTyping(true);
-setTimeout(()=>{setTyping(false);setMsgs(m=>[...m,{from:'bot',text:botReply(val)}])},1000+Math.random()*600);
+const lastBotMsg=[...msgs].reverse().find(m=>m.from==='bot');
+const lastWasBooking=lastBotMsg&&/consultation|connect you with our team/i.test(lastBotMsg.text);
+setTimeout(()=>{setTyping(false);setMsgs(m=>[...m,{from:'bot',text:botReply(val,lastWasBooking)}])},1000+Math.random()*600);
 }
 
 const side=t.position==='left'?{left:24}:{right:24};
