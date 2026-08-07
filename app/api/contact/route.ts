@@ -32,10 +32,14 @@ export async function POST(req: NextRequest) {
 
     if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
 
-    await Promise.all([
-      sendConfirmationEmail(body.workEmail, body.fullName),
-      sendAdminNotification({ fullName: body.fullName, company: body.company, workEmail: body.workEmail, interest: body.interest })
-    ]);
+    try {
+      await Promise.all([
+        sendConfirmationEmail(body.workEmail, body.fullName),
+        sendAdminNotification({ fullName: body.fullName, company: body.company, workEmail: body.workEmail, interest: body.interest })
+      ]);
+    } catch (emailErr) {
+      console.error('contact: enquiry saved but email failed', emailErr);
+    }
 
     return NextResponse.json({ ok: true, id: data.id });
   } catch (err) {

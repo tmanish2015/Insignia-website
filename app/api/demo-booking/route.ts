@@ -37,10 +37,14 @@ export async function POST(req: NextRequest) {
       .insert({ enquiry_id: enquiryId, requested_slot: body.requestedSlot ?? null });
     if (bookingError) return NextResponse.json({ ok: false, error: bookingError.message }, { status: 500 });
 
-    await Promise.all([
-      sendConfirmationEmail(body.workEmail, body.fullName),
-      sendAdminNotification({ fullName: body.fullName, company: body.company, workEmail: body.workEmail, type: 'demo_booking' })
-    ]);
+    try {
+      await Promise.all([
+        sendConfirmationEmail(body.workEmail, body.fullName),
+        sendAdminNotification({ fullName: body.fullName, company: body.company, workEmail: body.workEmail, type: 'demo_booking' })
+      ]);
+    } catch (emailErr) {
+      console.error('demo-booking: booking saved but email failed', emailErr);
+    }
 
     return NextResponse.json({ ok: true, enquiryId });
   } catch (err) {
