@@ -1,12 +1,13 @@
-export type Interest = 'erp' | 'ai_automation' | 'digital_marketing' | 'all';
+export type Requirement = 'erp' | 'ai_automation' | 'digital_marketing' | 'all';
 
 export interface EnquiryInput {
-  fullName: string;
+  name: string;
   company: string;
-  workEmail: string;
-  phone?: string;
-  interest: Interest;
+  email: string;
+  mobile: string;
+  industry: string;
+  businessType: string;
+  requirement: Requirement;
   message?: string;
   recaptchaToken: string;
-  sourcePage: string;
 }

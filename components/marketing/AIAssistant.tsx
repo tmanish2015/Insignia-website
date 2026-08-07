@@ -2,11 +2,11 @@
 import { useState, FormEvent } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Button } from '@/components/ui/Button';
+import { industryOptions } from '@/lib/data/industryOptions';
 import type { AssistantRecommendation, EmployeeBand, TurnoverBand } from '@/types/assistant';
 
 type Status = 'idle' | 'submitting' | 'done' | 'error';
 
-const industryOptions = ['Manufacturing', 'Distribution', 'Retail', 'Textile / Fabric / Garment', 'Healthcare', 'Hospitality', 'Automobile', 'Education', 'Construction', 'Other'];
 const turnoverOptions: { value: TurnoverBand; label: string }[] = [
   { value: 'under_1cr', label: 'Under ₹1 crore' },
   { value: '1cr_10cr', label: '₹1–10 crore' },

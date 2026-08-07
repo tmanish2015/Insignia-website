@@ -3,16 +3,17 @@ create extension if not exists pgcrypto;
 create table if not exists enquiries (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
-  full_name text not null,
+  name text not null,
   company text not null,
-  work_email text not null,
-  phone text,
-  interest text not null check (interest in ('erp','ai_automation','digital_marketing','all')),
+  email text not null,
+  mobile text not null,
+  industry text not null,
+  business_type text not null,
+  requirement text not null check (requirement in ('erp','ai_automation','digital_marketing','all')),
   message text,
-  source_page text not null default 'contact',
-  status text not null default 'new' check (status in ('new','contacted','qualified','closed')),
-  crm_synced boolean not null default false,
-  recaptcha_score numeric
+  lead_source text not null default 'Website Contact Form',
+  whatsapp_customer_status text not null default 'pending' check (whatsapp_customer_status in ('pending','sent','failed')),
+  whatsapp_admin_status text not null default 'pending' check (whatsapp_admin_status in ('pending','sent','failed'))
 );
 
 create table if not exists demo_bookings (
