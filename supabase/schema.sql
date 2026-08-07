@@ -40,6 +40,19 @@ create table if not exists whatsapp_conversations (
   transcript jsonb not null default '[]'
 );
 
+create table if not exists assistant_leads (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  enquiry_id uuid references enquiries(id),
+  industry text not null,
+  turnover_band text not null,
+  employee_band text not null,
+  current_software text,
+  pain_point text not null,
+  recommended_product text not null,
+  recommended_tier text not null
+);
+
 create table if not exists admin_users (
   id uuid primary key references auth.users(id),
   role text not null default 'staff' check (role in ('staff','sales','admin')),
@@ -50,10 +63,14 @@ alter table enquiries enable row level security;
 alter table demo_bookings enable row level security;
 alter table newsletter_subscribers enable row level security;
 alter table whatsapp_conversations enable row level security;
+alter table assistant_leads enable row level security;
 alter table admin_users enable row level security;
 
 create policy "admins can read enquiries" on enquiries for select
   using (exists (select 1 from admin_users a where a.id = auth.uid()));
 
 create policy "admins can read demo_bookings" on demo_bookings for select
+  using (exists (select 1 from admin_users a where a.id = auth.uid()));
+
+create policy "admins can read assistant_leads" on assistant_leads for select
   using (exists (select 1 from admin_users a where a.id = auth.uid()));
