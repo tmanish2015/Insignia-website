@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>INSIGNIA — Transforming Businesses with AI</title>
+<meta name="description" content="One platform for ERP, AI Automation, and Digital Marketing. INSIGNIA helps manufacturers, distributors and enterprises grow revenue with intelligent software.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+.hero{padding:70px 0 40px;overflow:hidden;position:relative}
+.hero .wrap{text-align:center;position:relative;z-index:2}
+.hero-glow{position:absolute;top:-260px;left:50%;transform:translateX(-50%);width:1100px;height:700px;background:radial-gradient(closest-side,oklch(30% .09 292),transparent 70%);z-index:0;pointer-events:none}
+.hero-glow2{position:absolute;top:-120px;left:20%;width:600px;height:500px;background:radial-gradient(closest-side,oklch(28% .1 350),transparent 70%);z-index:0;pointer-events:none;opacity:.7}
+.hero h1{font-size:76px;max-width:920px;margin:0 auto 24px}
+.hero h1 .accent{color:var(--accent-dark)}
+.hero p.lede{font-size:20px;max-width:620px;margin:0 auto 40px}
+.hero-btns{display:flex;gap:16px;justify-content:center;margin-bottom:70px}
+.hero-stage{position:relative;max-width:1040px;margin:0 auto}
+.float-card{position:absolute;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);padding:14px 18px;font-size:13px;font-weight:700;color:var(--fg);display:flex;align-items:center;gap:10px;animation:float 6s ease-in-out infinite;transform-style:preserve-3d}
+.float-card .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.fc1{top:6%;left:-4%;animation-delay:0s}
+.fc2{bottom:10%;right:-3%;animation-delay:1.4s}
+.fc3{top:42%;right:-6%;animation-delay:.8s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.trusted{padding:70px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.trusted p.label{text-align:center;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-soft);margin-bottom:36px}
+.ind-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.ind-row span{font-size:16px;font-weight:700;color:var(--fg-soft)}
+.svc-card{padding:36px}
+.svc-card h3{font-size:22px;margin-bottom:12px}
+.svc-card ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.svc-card ul li{font-size:14px;color:var(--fg-muted);padding-left:18px;position:relative}
+.svc-card ul li:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.why-card{padding:30px;text-align:left}
+.why-card h4{font-size:17px;margin-bottom:8px}
+.why-card p{font-size:14px}
+.showcase-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:44px;flex-wrap:wrap}
+.showcase-tabs span{font-size:13px;font-weight:700;color:var(--fg-soft);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:8px 18px}
+.process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.process-step{padding:0 20px;position:relative}
+.process-step .num{font-size:44px;font-weight:900;color:var(--accent-soft);-webkit-text-stroke:1.5px var(--accent);margin-bottom:18px}
+.process-step h4{font-size:19px;margin-bottom:10px}
+.process-step p{font-size:14px}
+.founder{background:var(--surface);border-radius:var(--radius-lg);padding:64px;display:grid;grid-template-columns:.9fr 1.4fr;gap:56px;align-items:center}
+.founder-photo{width:100%;aspect-ratio:1;border-radius:var(--radius-md);background:repeating-linear-gradient(135deg,var(--surface2),var(--surface2) 10px,var(--surface) 10px,var(--surface) 20px);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--fg-soft);font-family:monospace;text-align:center;padding:20px;border:1px solid var(--border)}
+.founder blockquote{font-size:26px;font-weight:700;line-height:1.4;letter-spacing:-.01em;margin-bottom:24px}
+.founder .who{font-size:15px;font-weight:700}
+.founder .role{font-size:14px;color:var(--fg-soft)}
+.cta-band{background:linear-gradient(135deg,var(--accent-soft),var(--accent2-soft));border:1px solid var(--border);box-shadow:var(--glow);border-radius:var(--radius-lg);padding:80px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-band h2{color:#fff;font-size:44px;margin-bottom:18px}
+.cta-band p{color:var(--fg-muted);font-size:18px;margin-bottom:36px}
+.cta-band .hero-btns{margin-bottom:0}
+@media(max-width:1100px){.float-card{display:none}}
+@media(max-width:960px){.hero h1{font-size:44px}.founder{grid-template-columns:1fr;padding:36px}.process-row{grid-template-columns:1fr 1fr;gap:36px 0}.cta-band{padding:48px 28px}.cta-band h2{font-size:32px}}
+</style>
+</head>
+<body>
+<nav class="nav" data-screen-label="nav"><div class="wrap">
+<div class="logo">INSIGNIA</div>
+<div class="navlinks">
+<a href="solutions.html">Solutions</a>
+<a href="solutions.html#industries">Industries</a>
+<a href="solutions.html#erp">ERP</a>
+<a href="solutions.html#ai">AI</a>
+<a href="pricing.html">Pricing</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="navcta"><a href="contact.html" class="btn btn-accent btn-sm">Book Demo</a><button class="navtoggle" id="navtoggle" aria-label="Menu"><span></span><span></span><span></span></button></div>
+</div></nav>
+
+<header class="hero" data-screen-label="hero">
+<div class="hero-glow"></div><div class="hero-glow2"></div>
+<div class="wrap">
+<span class="eyebrow">AI · ERP · Growth Platform</span>
+<h1>Transform Your Business with <span class="accent">AI-Powered ERP</span></h1>
+<p class="lede">One platform for ERP, AI automation, and digital marketing — built to turn operational data into revenue for manufacturers, distributors and enterprises.</p>
+<div class="hero-btns">
+<a href="contact.html" class="btn btn-accent">Book Free Demo</a>
+<a href="solutions.html" class="btn btn-ghost">Explore Platform</a>
+</div>
+<div class="hero-stage tilt-stage">
+<div class="browser">
+<div class="browser-bar"><span></span><span></span><span></span></div>
+<div class="dash">
+<div class="dash-title">Executive Dashboard</div>
+<div class="dash-sub">Cross-module KPIs for sales, purchasing, inventory, finance and CRM</div>
+<div class="dash-stats">
+<div class="stat"><div class="label">Revenue (MTD)</div><div class="val">₹1,59,249</div></div>
+<div class="stat"><div class="label">Cash Position</div><div class="val">₹9,37,003</div></div>
+<div class="stat"><div class="label">Open Pipeline</div><div class="val">₹21,45,000</div></div>
+<div class="stat"><div class="label">Inventory Value</div><div class="val">₹33,84,485</div></div>
+</div>
+<div class="dash-grid">
+<div class="chart-card"><div class="label" style="font-size:12px;font-weight:700;color:var(--fg-soft)">Revenue vs Expense</div><div class="bars"><i style="height:40%"></i><i style="height:55%"></i><i style="height:30%"></i><i style="height:70%"></i><i style="height:50%"></i><i style="height:85%"></i></div></div>
+<div class="chart-card"><div class="label" style="font-size:12px;font-weight:700;color:var(--fg-soft)">Customer Status</div><div class="donut"></div><div class="donut-hole"></div></div>
+</div>
+</div>
+</div>
+<div class="float-card fc1"><span class="dot"></span>+38% pipeline this quarter</div>
+<div class="float-card fc2"><span class="dot"></span>Invoice auto-reconciled</div>
+<div class="float-card fc3"><span class="dot"></span>AI flagged 3 expiring batches</div>
+</div>
+</div>
+</header>
+
+<section class="trusted" data-screen-label="trusted">
+<div class="wrap">
+<p class="label">Built for growing businesses across</p>
+<div class="ind-row">
+<span>Manufacturing</span><span>Retail</span><span>Distribution</span><span>Healthcare</span><span>Education</span><span>Hospitality</span><span>Real Estate</span><span>Automotive</span>
+</div>
+</div>
+</section>
+
+<section data-screen-label="services">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">What We Do</span><h2 style="margin-top:20px;font-size:42px">Every function, one platform</h2><p>ERP, AI automation and digital marketing, engineered to work together instead of bolted on afterward.</p></div>
+<div class="grid-3">
+<div class="card svc-card"><div class="icon-tile">◧</div><h3>ERP Software</h3><p>Run the business from one system of record.</p><ul><li>CRM &amp; Sales</li><li>Inventory &amp; Warehousing</li><li>HRMS</li><li>Finance &amp; Accounting</li></ul></div>
+<div class="card svc-card"><div class="icon-tile">◈</div><h3>AI Automation</h3><p>Let agents handle the repetitive work.</p><ul><li>Workflow Automation</li><li>Document AI</li><li>WhatsApp &amp; Voice AI</li><li>Predictive Analytics</li></ul></div>
+<div class="card svc-card"><div class="icon-tile">◎</div><h3>Digital Marketing</h3><p>Fill the pipeline your ERP will run on.</p><ul><li>SEO &amp; Performance Marketing</li><li>WhatsApp Automation</li><li>Lead Management</li><li>Analytics</li></ul></div>
+</div>
+</div>
+</section>
+
+<section style="background:var(--surface)" data-screen-label="why">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Why Insignia</span><h2 style="margin-top:20px;font-size:42px">Built for scale, from day one</h2></div>
+<div class="grid-3">
+<div class="card why-card"><div class="icon-tile">✦</div><h4>AI First</h4><p>Every module is designed around agents and automation, not retrofitted with a chatbot.</p></div>
+<div class="card why-card"><div class="icon-tile">☁</div><h4>Cloud Native</h4><p>Access every dashboard from anywhere, on any device, with zero infrastructure to manage.</p></div>
+<div class="card why-card"><div class="icon-tile">◒</div><h4>Secure</h4><p>Role-based approvals and audit trails built into every workflow, from invoice to payout.</p></div>
+<div class="card why-card"><div class="icon-tile">⚡</div><h4>Fast Deployment</h4><p>Go live in weeks, not quarters, with guided onboarding and data migration.</p></div>
+<div class="card why-card"><div class="icon-tile">◫</div><h4>Scalable</h4><p>One data model that holds from a single warehouse to a multi-location enterprise.</p></div>
+<div class="card why-card"><div class="icon-tile">◉</div><h4>Dedicated Support</h4><p>A named team that knows your business, not a ticket queue.</p></div>
+</div>
+</div>
+</section>
+
+<section data-screen-label="erp-showcase">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">Inside the Platform</span><h2 style="margin-top:20px;font-size:42px">Real-time visibility, every department</h2><p>Finance, CRM and operations, reconciled automatically and reported in one place.</p></div>
+<div class="showcase-tabs"><span>Inventory</span><span>Sales</span><span>Purchase</span><span>CRM</span><span>Accounting</span><span>Manufacturing</span><span>HR</span><span>Reports</span></div>
+<div class="grid-2 tilt-stage">
+<div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash">
+<div class="dash-title">Financial Dashboard</div><div class="dash-sub">Cash position, receivables, payables and profitability at a glance</div>
+<div class="dash-stats"><div class="stat"><div class="label">Bank Balance</div><div class="val">₹8,67,503</div></div><div class="stat"><div class="label">Receivables</div><div class="val">₹1,15,321</div></div><div class="stat"><div class="label">Net Profit</div><div class="val">₹3,456</div></div><div class="stat"><div class="label">GST Payable</div><div class="val">₹1,41,514</div></div></div>
+<div class="chart-card"><div class="label" style="font-size:12px;font-weight:700;color:var(--fg-soft)">Income vs Expense</div><div class="bars"><i style="height:60%"></i><i style="height:30%"></i><i style="height:75%"></i><i style="height:40%"></i></div></div>
+</div></div>
+<div class="browser"><div class="browser-bar"><span></span><span></span><span></span></div><div class="dash">
+<div class="dash-title">CRM Dashboard</div><div class="dash-sub">Customer health, pipeline, tickets and follow-ups at a glance</div>
+<div class="dash-stats"><div class="stat"><div class="label">Active Customers</div><div class="val">5</div></div><div class="stat"><div class="label">Open Pipeline</div><div class="val">₹21,45,000</div></div><div class="stat"><div class="label">Open Tickets</div><div class="val">3</div></div><div class="stat"><div class="label">Avg Rating</div><div class="val">3.7 / 5</div></div></div>
+<div class="chart-card"><div class="label" style="font-size:12px;font-weight:700;color:var(--fg-soft)">Pipeline by Stage</div><div class="bars"><i style="height:80%"></i><i style="height:35%"></i><i style="height:55%"></i></div></div>
+</div></div>
+</div>
+</div>
+</section>
+
+<section style="background:var(--surface)" data-screen-label="process">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">How We Work</span><h2 style="margin-top:20px;font-size:42px">From audit to autopilot</h2></div>
+<div class="process-row">
+<div class="process-step"><div class="num">01</div><h4>Discover</h4><p>We map your workflows, data and revenue leaks across every department.</p></div>
+<div class="process-step"><div class="num">02</div><h4>Design</h4><p>A tailored ERP, AI and marketing architecture built around how you actually operate.</p></div>
+<div class="process-step"><div class="num">03</div><h4>Implement</h4><p>Guided rollout, data migration and team onboarding with a dedicated team.</p></div>
+<div class="process-step"><div class="num">04</div><h4>Scale</h4><p>Continuous automation and insight as you add locations, products and people.</p></div>
+</div>
+</div>
+</section>
+
+<section data-screen-label="founder">
+<div class="wrap">
+<div class="founder">
+<div class="founder-photo">FOUNDER<br>PORTRAIT</div>
+<div>
+<blockquote>"We built Insignia because growing businesses were buying ten disconnected tools to do what should be one intelligent system. We wanted to change that."</blockquote>
+<div class="who">Founder &amp; CEO</div>
+<div class="role">Insignia</div>
+</div>
+</div>
+</div>
+</section>
+
+<section data-screen-label="cta">
+<div class="wrap">
+<div class="cta-band">
+<h2>Ready to Grow with AI?</h2>
+<p>Book a free consultation and see your business inside the platform.</p>
+<div class="hero-btns"><a href="contact.html" class="btn btn-accent">Book Your Free Consultation</a></div>
+</div>
+</div>
+</section>
+
+<footer data-screen-label="footer"><div class="wrap">
+<div class="cols">
+<div class="fcol"><div class="logo" style="color:#fff">INSIGNIA</div><p style="color:oklch(65% .008 260);font-size:14px;margin-top:16px;max-width:260px">Transforming businesses with AI, ERP and automation.</p></div>
+<div class="fcol"><h4>Company</h4><ul><li><a href="contact.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html">Careers</a></li></ul></div>
+<div class="fcol"><h4>Solutions</h4><ul><li><a href="solutions.html#erp">ERP Platform</a></li><li><a href="solutions.html#ai">AI Automation</a></li><li><a href="solutions.html#marketing">Digital Marketing</a></li></ul></div>
+<div class="fcol"><h4>Resources</h4><ul><li><a href="pricing.html">Pricing</a></li><li><a href="solutions.html#industries">Industries</a></li></ul></div>
+<div class="fcol"><h4>Legal</h4><ul><li><a href="contact.html">Privacy</a></li><li><a href="contact.html">Terms</a></li></ul></div>
+</div>
+<div class="bottom"><span>© 2026 Insignia. All rights reserved.</span><span>LinkedIn · X · YouTube</span></div>
+</div></footer>
+<script>(function(){var t=document.getElementById("navtoggle"),n=document.querySelector(".navlinks");if(t){t.addEventListener("click",function(){t.classList.toggle("open");n.classList.toggle("open")})}})();</script>
+<div id="wa-root"></div>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="whatsapp-widget.jsx"></script>
+</body>
+</html>

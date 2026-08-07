@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { background: theme('colors.bg'); color: theme('colors.fg'); -webkit-font-smoothing: antialiased; }
+a { color: theme('colors.accent-dark'); text-decoration: none; }
+a:hover { color: theme('colors.fg'); }
+h1, h2, h3, h4 { font-weight: 800; letter-spacing: -.02em; line-height: 1.05; }
+section { padding: 120px 0; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
