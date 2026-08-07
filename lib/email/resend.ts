@@ -1,9 +1,11 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 export async function sendConfirmationEmail(to: string, fullName: string) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: process.env.EMAIL_FROM!,
     to,
     subject: "Thanks — we've got your request",
@@ -12,7 +14,7 @@ export async function sendConfirmationEmail(to: string, fullName: string) {
 }
 
 export async function sendAdminNotification(data: Record<string, string>) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: process.env.EMAIL_FROM!,
     to: process.env.EMAIL_ADMIN_NOTIFY!,
     subject: `New enquiry: ${data.company}`,
