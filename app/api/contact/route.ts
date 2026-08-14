@@ -75,7 +75,10 @@ export async function POST(req: NextRequest) {
       .select('id')
       .single();
 
-    if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+    if (error) {
+      console.error('contact: supabase insert failed', error);
+      return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+    }
 
     const adminNumber = process.env.ADMIN_WHATSAPP_NUMBER;
     const [adminResult, customerResult] = await Promise.all([
@@ -100,6 +103,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true, id: data.id });
   } catch (err) {
+    console.error('contact: unhandled error', err);
     return NextResponse.json({ ok: false, error: err instanceof Error ? err.message : 'Server error' }, { status: 500 });
   }
 }
