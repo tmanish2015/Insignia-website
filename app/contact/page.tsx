@@ -3,7 +3,7 @@ import { ContactForm } from '@/components/marketing/ContactForm';
 const info = [
   ['Email', 'Insignia0026@gmail.com', 'For general questions and partnership enquiries.'],
   ['Phone', '+91 9928972157 / 9587777332', 'Mon–Sat, 9:30am–7pm IST.'],
-  ['Offices', 'Orchid-407, Manglam Ananda, Sanganer, Jipur - 302029 Rajasthan', 'Serving manufacturers, distributors and enterprises globally.']
+  ['Offices', 'Orchid-407, Manglam Ananda, Sanganer, Jaipur - 302029, Rajasthan', 'Serving manufacturers, distributors and enterprises globally.']
 ];
 
 export default function Contact() {
