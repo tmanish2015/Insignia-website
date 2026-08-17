@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
     const adminNumber = process.env.ADMIN_WHATSAPP_NUMBER;
     const [adminResult, customerResult] = await Promise.all([
       adminNumber ? sendWhatsAppText(adminNumber, adminMessage(body)) : Promise.resolve({ success: false, error: 'ADMIN_WHATSAPP_NUMBER not configured' }),
-      sendWhatsAppTemplate(body.mobile, 'insignia_enquiry_confirmation', 'en_US')
+      sendWhatsAppTemplate(body.mobile, 'insignia_enquiry_confirmation', 'en')
     ]);
 
     if (!adminResult.success) console.error('contact: admin WhatsApp notify failed', adminResult.error);
