@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabase/server';
 import { verifyRecaptcha } from '@/lib/recaptcha';
-import { sendWhatsAppText } from '@/lib/whatsapp';
+import { sendWhatsAppText, sendWhatsAppTemplate } from '@/lib/whatsapp';
 import type { EnquiryInput, Requirement } from '@/types/enquiry';
 
 const requirementLabels: Record<Requirement, string> = {
@@ -10,20 +10,6 @@ const requirementLabels: Record<Requirement, string> = {
   digital_marketing: 'Digital Marketing',
   all: 'All of the above'
 };
-
-function customerMessage() {
-  return `Thank you for contacting Insignia Technologies.
-
-We have received your enquiry successfully.
-
-One of our ERP consultants will contact you shortly.
-
-If your requirement is urgent, simply reply to this WhatsApp.
-
-Regards,
-Team Insignia Technologies
-www.insigniatech.in`;
-}
 
 function adminMessage(body: EnquiryInput) {
   const now = new Date();
@@ -83,7 +69,7 @@ export async function POST(req: NextRequest) {
     const adminNumber = process.env.ADMIN_WHATSAPP_NUMBER;
     const [adminResult, customerResult] = await Promise.all([
       adminNumber ? sendWhatsAppText(adminNumber, adminMessage(body)) : Promise.resolve({ success: false, error: 'ADMIN_WHATSAPP_NUMBER not configured' }),
-      sendWhatsAppText(body.mobile, customerMessage())
+      sendWhatsAppTemplate(body.mobile, 'insignia_enquiry_confirmation', 'en_US')
     ]);
 
     if (!adminResult.success) console.error('contact: admin WhatsApp notify failed', adminResult.error);

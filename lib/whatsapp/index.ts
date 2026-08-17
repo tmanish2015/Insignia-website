@@ -1,5 +1,9 @@
 import { MetaWhatsAppProvider } from './providers/meta';
-import type { WhatsAppProvider, WhatsAppSendResult } from './types';
+import type {
+  WhatsAppProvider,
+  WhatsAppSendResult,
+  WhatsAppTemplateComponent
+} from './types';
 
 function getWhatsAppProvider(): WhatsAppProvider {
   const provider = process.env.WHATSAPP_PROVIDER ?? 'meta';
@@ -15,4 +19,13 @@ export function sendWhatsAppText(to: string, body: string): Promise<WhatsAppSend
   return getWhatsAppProvider().sendText(to, body);
 }
 
-export type { WhatsAppProvider, WhatsAppSendResult };
+export function sendWhatsAppTemplate(
+  to: string,
+  templateName: string,
+  languageCode: string,
+  components?: WhatsAppTemplateComponent[]
+): Promise<WhatsAppSendResult> {
+  return getWhatsAppProvider().sendTemplate(to, templateName, languageCode, components);
+}
+
+export type { WhatsAppProvider, WhatsAppSendResult, WhatsAppTemplateComponent };

@@ -1,8 +1,12 @@
 import { normalizeIndianNumber } from '../normalize';
-import type { WhatsAppProvider, WhatsAppSendResult } from '../types';
+import type {
+  WhatsAppProvider,
+  WhatsAppSendResult,
+  WhatsAppTemplateComponent
+} from '../types';
 
 export class MetaWhatsAppProvider implements WhatsAppProvider {
-  async sendText(to: string, _body: string): Promise<WhatsAppSendResult> {
+  private async send(payload: Record<string, unknown>): Promise<WhatsAppSendResult> {
     const phoneNumberId = process.env.META_PHONE_NUMBER_ID;
     const accessToken = process.env.META_ACCESS_TOKEN;
 
@@ -22,17 +26,7 @@ export class MetaWhatsAppProvider implements WhatsAppProvider {
             Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            messaging_product: 'whatsapp',
-            to: normalizeIndianNumber(to),
-            type: 'template',
-            template: {
-              name: 'hello_world',
-              language: {
-                code: 'en_US'
-              }
-            }
-          })
+          body: JSON.stringify(payload)
         }
       );
 
@@ -55,5 +49,39 @@ export class MetaWhatsAppProvider implements WhatsAppProvider {
             : 'Unknown WhatsApp send error'
       };
     }
+  }
+
+  async sendText(to: string, _body: string): Promise<WhatsAppSendResult> {
+    return this.send({
+      messaging_product: 'whatsapp',
+      to: normalizeIndianNumber(to),
+      type: 'template',
+      template: {
+        name: 'hello_world',
+        language: {
+          code: 'en_US'
+        }
+      }
+    });
+  }
+
+  async sendTemplate(
+    to: string,
+    templateName: string,
+    languageCode: string,
+    components?: WhatsAppTemplateComponent[]
+  ): Promise<WhatsAppSendResult> {
+    return this.send({
+      messaging_product: 'whatsapp',
+      to: normalizeIndianNumber(to),
+      type: 'template',
+      template: {
+        name: templateName,
+        language: {
+          code: languageCode
+        },
+        ...(components && components.length > 0 ? { components } : {})
+      }
+    });
   }
 }
