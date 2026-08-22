@@ -20,7 +20,13 @@ const config: Config = {
         accent2: 'oklch(54% .2 350)',
         'accent2-soft': 'oklch(28% .08 350)',
         green: 'oklch(68% .16 150)',
-        'green-soft': 'oklch(28% .07 150)'
+        'green-soft': 'oklch(28% .07 150)',
+        tradeflow: 'oklch(58% .24 293)',
+        'tradeflow-soft': 'oklch(27% .08 293)',
+        transformerflow: 'oklch(62% .21 259)',
+        'transformerflow-soft': 'oklch(27% .08 259)',
+        ordersathi: 'oklch(55% .26 296)',
+        'ordersathi-soft': 'oklch(27% .08 296)'
       },
       borderRadius: { lg: '28px', md: '18px', sm: '12px' },
       boxShadow: {

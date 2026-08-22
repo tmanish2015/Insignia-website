@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import { products } from '@/lib/products';
 
 const cols = [
-  { title: 'Company', links: [['About', '/contact'], ['Contact', '/contact'], ['Careers', '/contact']] },
-  { title: 'Solutions', links: [['ERP Platform', '/solutions#erp'], ['AI Automation', '/solutions#ai'], ['Digital Marketing', '/solutions#marketing']] },
-  { title: 'Resources', links: [['Pricing', '/pricing'], ['Industries', '/solutions#industries']] },
-  { title: 'Legal', links: [['Privacy', '/contact'], ['Terms', '/contact']] }
+  { title: 'Products', links: products.map(p => [p.name, p.slug] as [string, string]) },
+  { title: 'Solutions', links: [['ERP Software', '/solutions#erp'], ['AI Automation', '/solutions#ai'], ['Digital Marketing', '/solutions#marketing'], ['Business Intelligence', '/solutions#industries']] as [string, string][] },
+  { title: 'Industries', links: [['Manufacturing', '/solutions#industries'], ['Trading', '/solutions#industries'], ['Distribution', '/solutions#industries'], ['Retail', '/solutions#industries'], ['MSMEs', '/solutions#industries']] as [string, string][] },
+  { title: 'Company', links: [['About', '/contact'], ['Contact', '/contact'], ['Privacy Policy', '/contact'], ['Terms', '/contact']] as [string, string][] }
 ];
 
 export function Footer() {
@@ -14,7 +15,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           <div>
             <div className="text-xl font-extrabold text-white">INSIGNIA</div>
-            <p className="text-sm mt-4 max-w-[260px] text-[oklch(65%_.008_260)]">Transforming businesses with AI, ERP and automation.</p>
+            <p className="text-sm mt-4 max-w-[260px] text-[oklch(65%_.008_260)]">AI-powered ERP and business automation for manufacturers, distributors, traders and growing enterprises.</p>
           </div>
           {cols.map(c => (
             <div key={c.title}>

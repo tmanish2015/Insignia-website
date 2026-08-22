@@ -1,5 +1,14 @@
 import { Button } from '@/components/ui/Button';
 import { BrowserMockup } from '@/components/marketing/BrowserMockup';
+import { ProductCard } from '@/components/marketing/ProductCard';
+import { products } from '@/lib/products';
+
+const floatingCards = [
+  { label: '+32% Revenue', className: '-top-5 -left-8 [@media(min-width:768px)]:flex hidden' },
+  { label: '248 Orders Today', className: 'top-1/3 -right-10 [@media(min-width:768px)]:flex hidden' },
+  { label: 'Inventory Optimized', className: 'bottom-10 -left-10 [@media(min-width:768px)]:flex hidden' },
+  { label: 'AI Insight', className: '-bottom-5 right-1/4 [@media(min-width:768px)]:flex hidden' }
+];
 
 const industries = ['Manufacturing', 'Retail', 'Distribution', 'Healthcare', 'Education', 'Hospitality', 'Real Estate', 'Automotive'];
 const services = [
@@ -38,6 +47,11 @@ export default function Home() {
             <BrowserMockup title="Executive Dashboard" subtitle="Cross-module KPIs for sales, purchasing, inventory, finance and CRM"
               stats={[{ label: 'Revenue (MTD)', value: '₹1,59,249' }, { label: 'Cash Position', value: '₹9,37,003' }, { label: 'Open Pipeline', value: '₹21,45,000' }, { label: 'Inventory Value', value: '₹33,84,485' }]}
               bars={[40, 55, 30, 70, 50, 85]} />
+            {floatingCards.map(c => (
+              <div key={c.label} className={`absolute ${c.className} items-center gap-2 bg-surface2 border border-border rounded-sm shadow-md px-4 py-3 text-[13px] font-bold text-fg animate-[float_6s_ease-in-out_infinite] z-20`}>
+                <span className="w-2 h-2 rounded-full bg-accent" />{c.label}
+              </div>
+            ))}
           </div>
         </div>
       </header>
@@ -47,6 +61,19 @@ export default function Home() {
           <p className="text-center text-[13px] font-bold uppercase tracking-wide text-fg-soft mb-9">Built for growing businesses across</p>
           <div className="flex justify-between flex-wrap gap-5">
             {industries.map(i => <span key={i} className="text-base font-bold text-fg-soft">{i}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <section id="products" className="bg-surface">
+        <div className="max-w-wrap mx-auto px-8">
+          <div className="max-w-[640px] mx-auto mb-16 text-center">
+            <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">ERP Products</span>
+            <h2 className="text-[42px] mt-5">One Platform. Three Powerful ERPs.</h2>
+            <p className="mt-4 text-lg text-fg-muted">Purpose-built business software for different stages of the business value chain.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+            {products.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
         </div>
       </section>
