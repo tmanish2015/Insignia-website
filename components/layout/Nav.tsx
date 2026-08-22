@@ -47,7 +47,11 @@ export function Nav({ active }: { active?: string }) {
   return (
     <nav className="sticky top-0 z-50 border-b border-border-soft bg-bg/[.78] backdrop-blur-2xl relative before:content-[''] before:absolute before:inset-x-0 before:top-0 before:h-0.5 before:bg-gradient-to-r before:from-accent2 before:to-accent">
       <div className="max-w-wrap mx-auto px-8 h-[76px] flex items-center justify-between">
-        <Link href="/" className="text-xl font-extrabold tracking-tight text-fg">INSIGNIA</Link>
+        <Link href="/" className="flex items-center gap-2.5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/assets/brand/insignia-icon.webp" alt="INSIGNIA logo" width={44} height={47} className="h-9 w-auto object-contain" />
+          <span className="text-xl font-extrabold tracking-tight text-fg">INSIGNIA</span>
+        </Link>
         <div className="hidden [@media(min-width:960px)]:flex items-center gap-9">
           <Dropdown label="Products">
             {products.map(p => (

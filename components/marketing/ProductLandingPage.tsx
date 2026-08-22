@@ -115,13 +115,13 @@ export function ProductLandingPage({ productId, dashboardTitle, dashboardSubtitl
             <div className="max-w-[640px] mx-auto mb-12 text-center">
               <span className={`text-xs font-bold uppercase tracking-wide px-4 py-1.5 rounded-full border ${badgeClass[product.color]}`}>Multi-Channel Online Order Management</span>
               <h2 className="text-[38px] mt-5">One inbox for every sales channel</h2>
-              <p className="mt-4 text-lg text-fg-muted">Live channels sync orders automatically. Channels marked "Coming Soon" are on the roadmap and not yet connected.</p>
+              <p className="mt-4 text-lg text-fg-muted">Amazon orders sync automatically today. More channels are on the roadmap.</p>
             </div>
             <div className="flex flex-wrap justify-center gap-3 max-w-[720px] mx-auto">
               {product.platforms.map(p => (
                 <span key={p.name} className={`text-sm font-bold px-5 py-3 rounded-full border ${p.status === 'live' ? 'text-green border-green/40 bg-green-soft' : 'text-fg-soft border-border-soft bg-surface2'}`}>
                   {p.name}
-                  <span className="ml-2 text-[11px] font-bold uppercase tracking-wide opacity-80">{p.status === 'live' ? 'Live' : p.name === '& More' ? 'Planned' : 'Coming Soon'}</span>
+                  {p.status === 'live' && <span className="ml-2 text-[11px] font-bold uppercase tracking-wide opacity-80">Live</span>}
                 </span>
               ))}
             </div>

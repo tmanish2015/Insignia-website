@@ -14,7 +14,11 @@ export function Footer() {
       <div className="max-w-wrap mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           <div>
-            <div className="text-xl font-extrabold text-white">INSIGNIA</div>
+            <div className="flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/brand/insignia-icon.webp" alt="INSIGNIA logo" width={44} height={47} className="h-8 w-auto object-contain" />
+              <span className="text-xl font-extrabold text-white">INSIGNIA</span>
+            </div>
             <p className="text-sm mt-4 max-w-[260px] text-[oklch(65%_.008_260)]">AI-powered ERP and business automation for manufacturers, distributors, traders and growing enterprises.</p>
           </div>
           {cols.map(c => (

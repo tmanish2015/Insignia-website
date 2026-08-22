@@ -7,7 +7,7 @@ interface Msg { from: 'bot' | 'user'; text: string }
 
 const GREETING = "Hi! I'm Insignia's assistant. Ask me about ERP, AI automation or pricing — I'm here 24/7.";
 
-export function WhatsAppWidget({ accent = '#22c55e', position = 'right', autoOpenDelay = 4 }: { accent?: string; position?: 'left' | 'right'; autoOpenDelay?: number }) {
+export function WhatsAppWidget({ accent = '#22c55e', position = 'right', autoOpenDelay = 0 }: { accent?: string; position?: 'left' | 'right'; autoOpenDelay?: number }) {
   const [open, setOpen] = useState(false);
   const [typing, setTyping] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([{ from: 'bot', text: GREETING }]);
@@ -42,17 +42,17 @@ export function WhatsAppWidget({ accent = '#22c55e', position = 'right', autoOpe
   return (
     <div>
       <button onClick={() => setOpen(o => !o)} aria-label="Chat with us"
-        className={`fixed bottom-6 ${side} w-15 h-15 rounded-full border-none shadow-md cursor-pointer flex items-center justify-center z-[998]`}
+        className={`fixed bottom-6 ${side} w-13 h-13 rounded-full border-none shadow-md cursor-pointer flex items-center justify-center z-[998]`}
         style={{ background: accent }}>
-        <MessageCircle color="#fff" size={28} />
+        <MessageCircle color="#fff" size={22} />
       </button>
       {open && (
-        <div className={`fixed bottom-24 ${side} w-[340px] max-w-[calc(100vw-48px)] bg-[#13151d] rounded-[20px] shadow-lg border border-[#262a38] overflow-hidden z-[998] flex flex-col font-sans`}>
-          <div className="px-4.5 py-4 text-white flex items-center gap-2.5" style={{ background: accent }}>
-            <div className="w-9 h-9 rounded-full bg-white/25 flex items-center justify-center font-extrabold">IN</div>
-            <div><div className="font-bold text-sm">Insignia Assistant</div><div className="text-xs opacity-85">Online 24/7</div></div>
+        <div className={`fixed bottom-[84px] ${side} w-[288px] max-w-[calc(100vw-48px)] bg-[#13151d] rounded-[18px] shadow-lg border border-[#262a38] overflow-hidden z-[998] flex flex-col font-sans`}>
+          <div className="px-3.5 py-3 text-white flex items-center gap-2" style={{ background: accent }}>
+            <div className="w-7 h-7 rounded-full bg-white/25 flex items-center justify-center font-extrabold text-xs">IN</div>
+            <div><div className="font-bold text-[13px]">Insignia Assistant</div><div className="text-[11px] opacity-85">Online 24/7</div></div>
           </div>
-          <div ref={boxRef} className="flex-1 p-4 flex flex-col gap-2.5 max-h-[320px] overflow-y-auto bg-[#0e0f16]">
+          <div ref={boxRef} className="flex-1 p-3.5 flex flex-col gap-2 max-h-[260px] overflow-y-auto bg-[#0e0f16]">
             {msgs.map((m, i) => (
               <div key={i} className={`px-3.5 py-2.5 rounded-[14px] text-[13.5px] leading-relaxed max-w-[85%] ${m.from === 'bot' ? 'self-start bg-[#1a1d27] text-[#e8e9ee] border border-[#262a38]' : 'self-end text-white'}`} style={m.from === 'user' ? { background: accent } : {}}>{m.text}</div>
             ))}

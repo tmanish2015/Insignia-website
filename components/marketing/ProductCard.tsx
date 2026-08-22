@@ -57,7 +57,7 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="flex flex-wrap gap-1.5">
             {product.platforms.map(p => (
               <span key={p.name} className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${p.status === 'live' ? 'text-green border-green/40 bg-green-soft' : 'text-fg-soft border-border-soft bg-surface'}`}>
-                {p.name}{p.status === 'planned' && p.name !== '& More' ? ' · Coming Soon' : ''}
+                {p.name}
               </span>
             ))}
           </div>
