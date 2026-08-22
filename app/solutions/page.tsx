@@ -34,7 +34,7 @@ export default function Solutions() {
             <p className="mt-4 text-lg text-fg-muted">Insignia's AI layer reads documents, watches thresholds and talks to customers — so your team works on decisions, not data entry.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 [@media(min-width:1100px)]:grid-cols-4 gap-6">
-            {aiCards.map(c => <div key={c} className="p-7.5 bg-surface border border-border rounded-md shadow-sm"><h4 className="text-lg mt-4 mb-2">{c}</h4></div>)}
+            {aiCards.map(c => <div key={c} className="p-7.5 bg-surface border border-border rounded-md shadow-sm flex items-center justify-center min-h-[84px]"><h4 className="text-lg text-center">{c}</h4></div>)}
           </div>
         </div>
       </section>
@@ -46,7 +46,7 @@ export default function Solutions() {
             <h2 className="text-4xl mt-5">Fill the pipeline your ERP will run on</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 [@media(min-width:1100px)]:grid-cols-4 gap-6">
-            {mkCards.map(c => <div key={c} className="p-7.5 bg-surface border border-border rounded-md shadow-sm"><h4 className="text-lg mt-4 mb-2">{c}</h4></div>)}
+            {mkCards.map(c => <div key={c} className="p-7.5 bg-surface border border-border rounded-md shadow-sm flex items-center justify-center min-h-[84px]"><h4 className="text-lg text-center">{c}</h4></div>)}
           </div>
         </div>
       </section>
