@@ -36,7 +36,8 @@ const featureDescriptions: Record<string, string> = {
   'Order Processing': 'Process, confirm and route orders without spreadsheets.',
   'Packing & Dispatch': 'Barcode-driven packing and dispatch tracking.',
   'Barcode Scanning': 'Scan-driven picking, packing and stock counts.',
-  'Supplier & Purchase Management': 'Manage supplier records and purchase history.'
+  'Supplier & Purchase Management': 'Manage supplier records and purchase history.',
+  'Merchant Tax Report Reconciliation': 'Reconcile marketplace settlement and MTR reports against your orders automatically.'
 };
 
 export function ProductLandingPage({ productId, dashboardTitle, dashboardSubtitle, dashboardStats }: {

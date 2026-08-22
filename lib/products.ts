@@ -71,7 +71,7 @@ export const products: Product[] = [
     logoSrc: '/assets/brands/order-sathi-logo.svg',
     logoWidth: 320,
     logoHeight: 64,
-    features: ['Online Order Management', 'Multi-Channel Order Management', 'Inventory Management', 'Order Processing', 'Packing & Dispatch', 'Barcode Scanning', 'Supplier & Purchase Management', 'Business Reports'],
+    features: ['Online Order Management', 'Multi-Channel Order Management', 'Inventory Management', 'Order Processing', 'Packing & Dispatch', 'Barcode Scanning', 'Supplier & Purchase Management', 'Business Reports', 'Merchant Tax Report Reconciliation'],
     workflow: ['Order Processing', 'Inventory', 'Packing', 'Dispatch', 'Reports'],
     heroHeadline: 'One System. Every Order. Every Channel.',
     heroDescription: 'Manage every online order, every channel and every stock movement from one powerful system.',
