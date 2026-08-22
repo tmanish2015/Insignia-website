@@ -32,10 +32,10 @@ export async function POST(req: NextRequest) {
     transcript: [{ from: 'user', text }, { from: 'bot', text: reply }]
   });
 
-  await fetch(`https://graph.facebook.com/v20.0/${process.env.WHATSAPP_BUSINESS_PHONE_NUMBER_ID}/messages`, {
+  await fetch(`https://graph.facebook.com/v20.0/${process.env.META_PHONE_NUMBER_ID}/messages`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.WHATSAPP_BUSINESS_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${process.env.META_ACCESS_TOKEN}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ messaging_product: 'whatsapp', to: from, text: { body: reply } })

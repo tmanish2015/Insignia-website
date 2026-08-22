@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
+import { RecaptchaProvider } from '@/components/providers/RecaptchaProvider';
 import { Nav } from '@/components/layout/Nav';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppWidget } from '@/components/chat/WhatsAppWidget';
@@ -17,13 +18,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  const body = (
+    <>
+      <Nav />
+      {children}
+      <Footer />
+      <WhatsAppWidget />
+    </>
+  );
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans bg-bg text-fg overflow-x-hidden">
-        <Nav />
-        {children}
-        <Footer />
-        <WhatsAppWidget />
+        {recaptchaSiteKey ? (
+          <RecaptchaProvider siteKey={recaptchaSiteKey}>{body}</RecaptchaProvider>
+        ) : body}
         {gaId && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />

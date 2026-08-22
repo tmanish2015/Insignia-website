@@ -1,7 +1,8 @@
 'use client';
 import { useState, FormEvent } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import type { Interest } from '@/types/enquiry';
+import { industryOptions, businessTypeOptions } from '@/lib/data/industryOptions';
+import type { Requirement } from '@/types/enquiry';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -22,14 +23,15 @@ export function ContactForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: fd.get('fullName'),
+          name: fd.get('name'),
           company: fd.get('company'),
-          workEmail: fd.get('workEmail'),
-          phone: fd.get('phone'),
-          interest: fd.get('interest') as Interest,
+          email: fd.get('email'),
+          mobile: fd.get('mobile'),
+          industry: fd.get('industry'),
+          businessType: fd.get('businessType'),
+          requirement: fd.get('requirement') as Requirement,
           message: fd.get('message'),
-          recaptchaToken,
-          sourcePage: 'contact'
+          recaptchaToken
         })
       });
       const data = await res.json();
@@ -45,8 +47,8 @@ export function ContactForm() {
     return (
       <div className="text-center py-16 px-5">
         <div className="w-13 h-13 mx-auto mb-5 rounded-md bg-accent-soft flex items-center justify-center text-2xl">✓</div>
-        <h3 className="text-2xl font-extrabold mb-2.5">Thanks — we've got it.</h3>
-        <p className="text-fg-muted">Our team will reach out within one business day to schedule your consultation.</p>
+        <h3 className="text-2xl font-extrabold mb-2.5">Thank you.</h3>
+        <p className="text-fg-muted">Your enquiry has been submitted successfully. A confirmation has been sent to your WhatsApp. One of our ERP consultants will contact you shortly.</p>
       </div>
     );
   }
@@ -57,16 +59,30 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-        <div><label className={labelCls}>Full name</label><input name="fullName" required placeholder="Your name" className={fieldCls} /></div>
+        <div><label className={labelCls}>Full name</label><input name="name" required placeholder="Your name" className={fieldCls} /></div>
         <div><label className={labelCls}>Company</label><input name="company" required placeholder="Company name" className={fieldCls} /></div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-        <div><label className={labelCls}>Work email</label><input name="workEmail" type="email" required placeholder="you@company.com" className={fieldCls} /></div>
-        <div><label className={labelCls}>Phone</label><input name="phone" type="tel" placeholder="+91" className={fieldCls} /></div>
+        <div><label className={labelCls}>Work email</label><input name="email" type="email" required placeholder="you@company.com" className={fieldCls} /></div>
+        <div><label className={labelCls}>Mobile (WhatsApp)</label><input name="mobile" type="tel" required placeholder="98765 43210" className={fieldCls} /></div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+        <div>
+          <label className={labelCls}>Industry</label>
+          <select name="industry" required className={fieldCls}>
+            {industryOptions.map(i => <option key={i} value={i}>{i}</option>)}
+          </select>
+        </div>
+        <div>
+          <label className={labelCls}>Business type</label>
+          <select name="businessType" required className={fieldCls}>
+            {businessTypeOptions.map(b => <option key={b} value={b}>{b}</option>)}
+          </select>
+        </div>
       </div>
       <div className="mb-5">
         <label className={labelCls}>What are you looking to solve?</label>
-        <select name="interest" className={fieldCls}>
+        <select name="requirement" className={fieldCls}>
           <option value="erp">ERP Implementation</option>
           <option value="ai_automation">AI Automation</option>
           <option value="digital_marketing">Digital Marketing</option>
