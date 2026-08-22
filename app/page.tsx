@@ -14,6 +14,15 @@ const floatingCards = [
   { label: 'AI Insight', className: '-bottom-5 right-1/4 [@media(min-width:768px)]:flex hidden' }
 ];
 
+const erpWhy = [
+  { icon: '✦', title: 'AI-Powered', desc: 'Intelligent automation and real-time insights.' },
+  { icon: '◧', title: 'Built for Business', desc: 'Designed around real business workflows.' },
+  { icon: '◫', title: 'Scalable', desc: 'Grow effortlessly with your business.' },
+  { icon: '◉', title: 'Connected', desc: 'Integrate processes, data and teams seamlessly.' },
+  { icon: '◎', title: 'Data-Driven', desc: 'Turn operational data into actionable business decisions.' },
+  { icon: '⚡', title: 'Automation First', desc: 'Automate repetitive tasks and save valuable time and resources.' }
+];
+
 const industryNames = ['Manufacturing', 'Retail', 'Distribution', 'Healthcare', 'Education', 'Hospitality', 'Real Estate', 'Automotive'];
 const aiDemoCards = ['AI Agents', 'Workflow Automation', 'Document AI', 'WhatsApp & Voice AI', 'Predictive Analytics'];
 const services = [
@@ -83,10 +92,22 @@ export default function Home() {
           <div className="max-w-[640px] mx-auto mb-16 text-center">
             <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">ERP Products</span>
             <h2 className="text-[42px] mt-5">One Platform. Three Powerful ERPs.</h2>
-            <p className="mt-4 text-lg text-fg-muted">Purpose-built business software for different stages of the business value chain.</p>
+            <p className="mt-4 text-lg text-fg-muted">Purpose-built business software for every stage of your growth.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+          <div className="grid grid-cols-1 [@media(min-width:768px)]:grid-cols-2 [@media(min-width:1100px)]:grid-cols-3 gap-7">
             {products.map(p => <ProductCard key={p.id} product={p} />)}
+          </div>
+          <div className="max-w-[640px] mx-auto mt-20 mb-14 text-center">
+            <h3 className="text-3xl">Why Businesses Choose INSIGNIA ERPs</h3>
+          </div>
+          <div className="grid grid-cols-2 [@media(min-width:900px)]:grid-cols-3 [@media(min-width:1100px)]:grid-cols-6 gap-5">
+            {erpWhy.map(w => (
+              <div key={w.title} className="p-5 text-center bg-surface2 border border-border rounded-md">
+                <div className="w-10 h-10 mx-auto rounded-md bg-accent-soft flex items-center justify-center text-accent-dark mb-3">{w.icon}</div>
+                <h4 className="text-sm mb-1.5">{w.title}</h4>
+                <p className="text-xs text-fg-muted">{w.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -3,12 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { products } from '@/lib/products';
-
-const productDots: Record<string, string> = {
-  tradeflow: 'bg-tradeflow',
-  transformerflow: 'bg-transformerflow',
-  'order-sathi': 'bg-ordersathi'
-};
+import { ProductLogo } from '@/components/marketing/ProductLogo';
 
 const solutionsLinks = [
   ['ERP Software', '/solutions#erp'],
@@ -56,9 +51,8 @@ export function Nav({ active }: { active?: string }) {
         <div className="hidden [@media(min-width:960px)]:flex items-center gap-9">
           <Dropdown label="Products">
             {products.map(p => (
-              <Link key={p.id} href={p.slug} className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-sm text-[14px] font-semibold text-fg-muted hover:text-fg hover:bg-surface2">
-                <span className={`w-1.5 h-1.5 rounded-full ${productDots[p.id]}`} />
-                {p.name}
+              <Link key={p.id} href={p.slug} className="flex items-center px-3.5 py-3 rounded-sm hover:bg-surface2">
+                <ProductLogo product={p} heightClass="h-4" />
               </Link>
             ))}
           </Dropdown>
@@ -93,7 +87,9 @@ export function Nav({ active }: { active?: string }) {
           {mobileSection === 'products' && (
             <div className="flex flex-col gap-1 pl-3 mb-1">
               {products.map(p => (
-                <Link key={p.id} href={p.slug} className="text-sm font-semibold text-fg-muted hover:text-fg py-2" onClick={() => setOpen(false)}>{p.name}</Link>
+                <Link key={p.id} href={p.slug} className="py-2.5" onClick={() => setOpen(false)}>
+                  <ProductLogo product={p} heightClass="h-4" />
+                </Link>
               ))}
             </div>
           )}
