@@ -22,7 +22,7 @@ const industryLinks = [
 
 const simpleLinks = [
   ['Pricing', '/pricing'],
-  ['About', '/contact'],
+  ['About', '/about'],
   ['Contact', '/contact']
 ];
 

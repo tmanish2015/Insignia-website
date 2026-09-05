@@ -6,9 +6,10 @@ interface Props {
   bars?: number[];
   donut?: boolean;
   tilt?: boolean;
+  sampleData?: boolean;
 }
 
-export function BrowserMockup({ title, subtitle, stats, bars, donut, tilt = true }: Props) {
+export function BrowserMockup({ title, subtitle, stats, bars, donut, tilt = true, sampleData = true }: Props) {
   return (
     <div className={tilt ? '[perspective:1800px]' : ''}>
       <div className={`rounded-md overflow-hidden shadow-lg border border-border bg-surface transition-transform duration-500 ${tilt ? '[transform:rotateX(8deg)_rotateY(-10deg)_rotateZ(1deg)] hover:[transform:rotateX(4deg)_rotateY(-5deg)_rotateZ(.5deg)]' : ''}`}>
@@ -17,7 +18,12 @@ export function BrowserMockup({ title, subtitle, stats, bars, donut, tilt = true
         </div>
         <div className="p-7 bg-surface">
           <div className="text-xl font-extrabold text-fg mb-1">{title}</div>
-          <div className="text-[13px] text-fg-soft mb-5">{subtitle}</div>
+          <div className="text-[13px] text-fg-soft mb-2">{subtitle}</div>
+          {sampleData && (
+            <div className="inline-block text-[11px] font-bold uppercase tracking-wide text-fg-soft bg-surface2 border border-border rounded-full px-3 py-1 mb-3.5">
+              Illustrative · Sample Data
+            </div>
+          )}
           <div className={`grid gap-3.5 mb-5`} style={{ gridTemplateColumns: `repeat(${stats.length},1fr)` }}>
             {stats.map(s => (
               <div key={s.label} className="bg-surface2 border border-border rounded-sm p-4">

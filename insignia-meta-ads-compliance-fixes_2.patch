@@ -1,0 +1,447 @@
+diff --git a/.gitignore b/.gitignore
+index 3936946..0a8c037 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -2,4 +2,6 @@ node_modules/
+ .next/
+ .env
+ .env.local
+-.vercel/
+\ No newline at end of file
++.vercel/
++tsconfig.tsbuildinfo
++
+diff --git a/app/about/page.tsx b/app/about/page.tsx
+new file mode 100644
+index 0000000..11f2246
+--- /dev/null
++++ b/app/about/page.tsx
+@@ -0,0 +1,101 @@
++import type { Metadata } from 'next';
++import Link from 'next/link';
++import { Button } from '@/components/ui/Button';
++import { products } from '@/lib/products';
++import { ProductLogo } from '@/components/marketing/ProductLogo';
++
++export const metadata: Metadata = {
++  title: 'About INSIGNIA — AI-Powered ERP & Business Automation',
++  description: 'INSIGNIA builds AI-powered ERP and business automation software — TradeFlow, TransformerFlow and Order Sathi — for manufacturers, distributors and growing enterprises.',
++  alternates: { canonical: '/about' },
++  openGraph: {
++    title: 'About INSIGNIA',
++    description: 'AI-powered ERP and business automation software for manufacturers, distributors and growing enterprises.',
++    url: '/about'
++  }
++};
++
++const focusAreas = [
++  { title: 'AI-Powered Business Automation', desc: 'AI agents and workflow automation that take on repetitive, manual work across sales, purchasing and operations.' },
++  { title: 'ERP Software', desc: 'Purpose-built ERP systems for trading, manufacturing and order management, run from one connected platform.' },
++  { title: 'Business Operations', desc: 'Inventory, sales, purchasing, finance and CRM handled in one system of record instead of scattered spreadsheets.' },
++  { title: 'Digital Transformation', desc: 'Helping businesses that run on Excel and WhatsApp today move to a connected, data-driven platform, at their own pace.' }
++];
++
++export default function About() {
++  return (
++    <>
++      <header className="pt-20 pb-14 text-center">
++        <div className="max-w-wrap mx-auto px-8">
++          <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">About</span>
++          <h1 className="text-4xl md:text-[56px] max-w-[760px] mx-auto mt-5">AI-powered ERP for growing businesses</h1>
++          <p className="text-lg max-w-[640px] mx-auto mt-5 text-fg-muted">INSIGNIA TECH is a technology company building AI-powered ERP and business automation software for manufacturers, distributors and growing enterprises — based in Jaipur, Rajasthan, India.</p>
++        </div>
++      </header>
++
++      <section className="pt-0">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="max-w-[780px] mx-auto text-[15px] leading-relaxed text-fg-muted space-y-5">
++            <p>We focus on AI-powered business automation, ERP software, day-to-day business operations and digital transformation — built for businesses that are running on spreadsheets and WhatsApp today, as well as those already operating at scale.</p>
++            <p>Our products are designed around how Indian MSMEs and growing enterprises actually operate: one connected system for sales, purchasing, inventory, finance and customer management, with AI automation layered on top instead of bolted on afterward.</p>
++          </div>
++        </div>
++      </section>
++
++      <section className="bg-surface mt-16">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="max-w-[640px] mx-auto mb-14 text-center">
++            <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">What We Do</span>
++            <h2 className="text-[38px] mt-5">Where we focus</h2>
++          </div>
++          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
++            {focusAreas.map(f => (
++              <div key={f.title} className="p-7 bg-surface2 border border-border rounded-md shadow-sm">
++                <h4 className="text-[17px] mb-2">{f.title}</h4>
++                <p className="text-sm text-fg-muted">{f.desc}</p>
++              </div>
++            ))}
++          </div>
++        </div>
++      </section>
++
++      <section className="mt-8">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="max-w-[640px] mx-auto mb-14 text-center">
++            <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">Our Products</span>
++            <h2 className="text-[38px] mt-5">Three ERPs, one platform</h2>
++          </div>
++          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
++            {products.map(p => (
++              <Link key={p.id} href={p.slug} className="p-7 bg-surface border border-border rounded-md shadow-sm hover:border-fg-muted transition-colors">
++                <ProductLogo product={p} heightClass="h-6 mb-4" />
++                <p className="text-sm text-fg-muted">{p.description}</p>
++              </Link>
++            ))}
++          </div>
++        </div>
++      </section>
++
++      <section className="bg-surface mt-16">
++        <div className="max-w-wrap mx-auto px-8 py-4">
++          <div className="max-w-[640px] mx-auto text-center">
++            <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">Based In</span>
++            <h2 className="text-[32px] mt-5 mb-3">Jaipur, Rajasthan, India</h2>
++            <p className="text-[15px] text-fg-muted">Orchid-407, Manglam Ananda, Sanganer, Jaipur – 302029, Rajasthan</p>
++            <p className="text-[15px] text-fg-muted mt-1">Insignia0026@gmail.com · +91 6350210426</p>
++          </div>
++        </div>
++      </section>
++
++      <section className="mt-8">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="bg-gradient-to-br from-accent-soft to-accent2-soft border border-border shadow-glow rounded-lg p-10 md:p-16 text-center text-white">
++            <h2 className="text-white text-[34px] mb-4">Want to see it on your own data?</h2>
++            <p className="text-fg-muted text-lg mb-8">Bring one real order or invoice — we'll run it through live before you commit to anything.</p>
++            <Button href="/contact" variant="accent">Book Your Free Consultation →</Button>
++          </div>
++        </div>
++      </section>
++    </>
++  );
++}
+diff --git a/app/page.tsx b/app/page.tsx
+index 24548c2..7953040 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -8,8 +8,8 @@ import { AIAssistant } from '@/components/marketing/AIAssistant';
+ import { industries as industryProfiles } from '@/lib/data/industries';
+ 
+ const floatingCards = [
+-  { label: '+32% Revenue', className: '-top-5 -left-8 [@media(min-width:768px)]:flex hidden' },
+-  { label: '248 Orders Today', className: 'top-1/3 -right-10 [@media(min-width:768px)]:flex hidden' },
++  { label: '+32% Revenue (Sample)', className: '-top-5 -left-8 [@media(min-width:768px)]:flex hidden' },
++  { label: '248 Orders Today (Sample)', className: 'top-1/3 -right-10 [@media(min-width:768px)]:flex hidden' },
+   { label: 'Inventory Optimized', className: 'bottom-10 -left-10 [@media(min-width:768px)]:flex hidden' },
+   { label: 'AI Insight', className: '-bottom-5 right-1/4 [@media(min-width:768px)]:flex hidden' }
+ ];
+diff --git a/app/privacy-policy/page.tsx b/app/privacy-policy/page.tsx
+new file mode 100644
+index 0000000..af35551
+--- /dev/null
++++ b/app/privacy-policy/page.tsx
+@@ -0,0 +1,124 @@
++import type { Metadata } from 'next';
++
++export const metadata: Metadata = {
++  title: 'Privacy Policy — INSIGNIA',
++  description: 'How INSIGNIA TECH collects, uses and protects information submitted through this website and our WhatsApp and contact channels.',
++  alternates: { canonical: '/privacy-policy' }
++};
++
++const sections: { heading: string; body: React.ReactNode }[] = [
++  {
++    heading: '1. Who we are',
++    body: <p>This Privacy Policy applies to the website operated by Insignia Tech ("Insignia", "we", "us", "our"), based in Jaipur, Rajasthan, India, and covers TradeFlow, TransformerFlow, Order Sathi and any related pages, forms and WhatsApp conversations linked from this site.</p>
++  },
++  {
++    heading: '2. Information we collect',
++    body: (
++      <>
++        <p>We collect information you provide directly, such as:</p>
++        <ul className="list-disc pl-6 space-y-1.5 mt-2">
++          <li>Your name, company name, work email and mobile/WhatsApp number, submitted through our contact and demo-booking forms.</li>
++          <li>Details you share about your industry, business size, current tools and requirements, where you choose to provide them.</li>
++          <li>Messages you send us over WhatsApp or through the on-site chat assistant.</li>
++        </ul>
++        <p className="mt-2">We also collect limited technical and usage data automatically when you browse this website, such as pages visited, device/browser type and general usage patterns, through analytics tools described below.</p>
++      </>
++    )
++  },
++  {
++    heading: '3. Cookies and analytics',
++    body: <p>This website may use cookies and similar technologies, along with third-party analytics services (which may include tools such as Google Analytics and Microsoft Clarity), to understand how visitors use the site and to improve it. You can control or disable cookies through your browser settings; doing so may affect some site functionality.</p>
++  },
++  {
++    heading: '4. WhatsApp and communication enquiries',
++    body: <p>If you contact us via WhatsApp or submit a demo/consultation request, we use the details you provide (such as your mobile number and enquiry details) to respond to you, send requested confirmations, and follow up about the products or services you asked about. We do not use your WhatsApp number for unrelated marketing without your consent.</p>
++  },
++  {
++    heading: '5. How we use your information',
++    body: (
++      <>
++        <p>We use the information we collect to:</p>
++        <ul className="list-disc pl-6 space-y-1.5 mt-2">
++          <li>Respond to enquiries and schedule demos or consultations.</li>
++          <li>Provide, operate and improve our website and products.</li>
++          <li>Send confirmations and updates directly related to your enquiry.</li>
++          <li>Understand aggregate usage of our website to improve content and performance.</li>
++          <li>Meet legal, security and fraud-prevention obligations.</li>
++        </ul>
++      </>
++    )
++  },
++  {
++    heading: '6. How we share information',
++    body: <p>We do not sell your personal information. We may share information with service providers who help us operate this website, our forms, WhatsApp messaging and analytics (for example, hosting, email delivery, messaging and analytics providers), solely to help us provide our services, and only to the extent necessary for that purpose. We may also disclose information if required by law or to protect our legal rights.</p>
++  },
++  {
++    heading: '7. Data security',
++    body: <p>We take reasonable technical and organizational measures to protect the information you share with us. However, no method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
++  },
++  {
++    heading: '8. Data retention',
++    body: <p>We retain personal information for as long as reasonably necessary to respond to your enquiry, provide our services, and comply with our legal and accounting obligations, after which it is deleted or anonymized.</p>
++  },
++  {
++    heading: '9. Your rights',
++    body: <p>You may request access to, correction of, or deletion of the personal information you have shared with us by contacting us using the details below. We will respond to reasonable requests in accordance with applicable law.</p>
++  },
++  {
++    heading: '10. Third-party links and services',
++    body: <p>Our website may link to third-party services (such as WhatsApp) that have their own privacy practices. This Privacy Policy does not cover those third-party services, and we encourage you to review their respective privacy policies.</p>
++  },
++  {
++    heading: "11. Children's privacy",
++    body: <p>Our website and services are intended for business use and are not directed at children. We do not knowingly collect personal information from children.</p>
++  },
++  {
++    heading: '12. Changes to this policy',
++    body: <p>We may update this Privacy Policy from time to time to reflect changes to our practices or for legal reasons. The "Last updated" date below reflects the most recent revision.</p>
++  },
++  {
++    heading: '13. Contact us',
++    body: (
++      <p>
++        If you have questions about this Privacy Policy or how we handle your information, contact us at{' '}
++        <a href="mailto:Insignia0026@gmail.com" className="text-accent-dark font-semibold hover:underline">Insignia0026@gmail.com</a> or{' '}
++        <a href="tel:+916350210426" className="text-accent-dark font-semibold hover:underline">+91 6350210426</a>, or write to us at Orchid-407, Manglam Ananda, Sanganer, Jaipur – 302029, Rajasthan, India.
++      </p>
++    )
++  }
++];
++
++export default function PrivacyPolicy() {
++  return (
++    <>
++      <header className="pt-20 pb-10 text-center">
++        <div className="max-w-wrap mx-auto px-8">
++          <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">Privacy Policy</span>
++          <h1 className="text-4xl md:text-[52px] max-w-[700px] mx-auto mt-5">How we handle your information</h1>
++          <p className="text-sm text-fg-soft mt-4">Last updated: September 2026</p>
++        </div>
++      </header>
++
++      <section className="pt-0 pb-8">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="max-w-[820px] mx-auto p-6 md:p-7 bg-surface2 border border-border rounded-md text-[14px] text-fg-muted">
++            This page is a general privacy policy template for a business website. It is not a substitute for legal advice — we recommend having it reviewed by a legal professional and updating it if Insignia Tech's data practices, tools or business structure change.
++          </div>
++        </div>
++      </section>
++
++      <section className="pt-0">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="max-w-[820px] mx-auto text-[15px] leading-relaxed text-fg-muted">
++            {sections.map((s, i) => (
++              <div key={s.heading} className={`py-6.5 border-t border-border ${i === sections.length - 1 ? 'border-b' : ''}`}>
++                <h3 className="text-[18px] text-fg mb-2.5 font-bold">{s.heading}</h3>
++                {s.body}
++              </div>
++            ))}
++          </div>
++        </div>
++      </section>
++    </>
++  );
++}
+diff --git a/app/terms-and-conditions/page.tsx b/app/terms-and-conditions/page.tsx
+new file mode 100644
+index 0000000..b1f688b
+--- /dev/null
++++ b/app/terms-and-conditions/page.tsx
+@@ -0,0 +1,111 @@
++import type { Metadata } from 'next';
++
++export const metadata: Metadata = {
++  title: 'Terms & Conditions — INSIGNIA',
++  description: 'Terms and conditions for using the INSIGNIA website and enquiring about TradeFlow, TransformerFlow and Order Sathi.',
++  alternates: { canonical: '/terms-and-conditions' }
++};
++
++const sections: { heading: string; body: React.ReactNode }[] = [
++  {
++    heading: '1. Acceptance of terms',
++    body: <p>By accessing or using this website (operated by Insignia Tech, "Insignia", "we", "us"), you agree to these Terms & Conditions. If you do not agree, please do not use this website.</p>
++  },
++  {
++    heading: '2. Website usage',
++    body: <p>This website and its content are provided for general informational purposes about Insignia's products — TradeFlow, TransformerFlow and Order Sathi — and to let visitors request demos or get in touch. You agree to use this website only for lawful purposes and not to misuse our forms, WhatsApp channel or on-site chat assistant.</p>
++  },
++  {
++    heading: '3. Product and service information',
++    body: <p>Descriptions of TradeFlow, TransformerFlow and Order Sathi on this website are for general informational purposes. Screens, dashboards and figures shown on this website (including any labeled "illustrative" or "sample data") are for demonstration purposes only and do not represent guaranteed results, actual customer data, or a specific outcome for your business.</p>
++  },
++  {
++    heading: '4. Demos, consultations and onboarding',
++    body: <p>Booking a demo or consultation through this website does not create a binding service agreement. Specific commercial terms — including pricing, implementation scope, timelines and support levels — are confirmed separately and directly with you before any paid engagement begins.</p>
++  },
++  {
++    heading: '5. Account and service usage',
++    body: <p>Where you are provided access to TradeFlow, TransformerFlow or Order Sathi as a customer, your use of that product will be governed by the specific service agreement or order form provided to you at onboarding. In case of any conflict between that agreement and this general website Terms & Conditions page, the specific service agreement will govern.</p>
++  },
++  {
++    heading: '6. Intellectual property',
++    body: <p>All content on this website — including text, graphics, logos, product names and design — is the property of Insignia Tech or its licensors and is protected by applicable intellectual property laws. You may not copy, reproduce or distribute this content without our prior written permission.</p>
++  },
++  {
++    heading: '7. Payments and subscriptions',
++    body: <p>This website does not process payments directly. Any pricing, billing cycle, subscription term or renewal terms for TradeFlow, TransformerFlow or Order Sathi will be set out separately in your commercial agreement with us at the time of purchase.</p>
++  },
++  {
++    heading: '8. User responsibilities',
++    body: <p>You are responsible for providing accurate information when submitting forms or contacting us, and for maintaining the confidentiality of any credentials issued to you if you become a customer of our products.</p>
++  },
++  {
++    heading: '9. Availability',
++    body: <p>We aim to keep this website available and up to date but do not guarantee uninterrupted access, and we may update, suspend or modify the website or its content at any time without prior notice.</p>
++  },
++  {
++    heading: '10. Third-party services',
++    body: <p>This website may link to or integrate with third-party services, including WhatsApp and analytics providers. We are not responsible for the content, policies or practices of third-party services.</p>
++  },
++  {
++    heading: '11. Disclaimer',
++    body: <p>Information on this website is provided "as is" without warranties of any kind, express or implied. We do not guarantee specific business outcomes, revenue increases, cost savings or performance results from using our products, and any figures shown for illustration should not be treated as a projection or promise for your business.</p>
++  },
++  {
++    heading: '12. Limitation of liability',
++    body: <p>To the maximum extent permitted by applicable law, Insignia Tech shall not be liable for any indirect, incidental or consequential damages arising from your use of this website. Nothing in this section limits liability that cannot be excluded under applicable Indian law.</p>
++  },
++  {
++    heading: '13. Termination',
++    body: <p>We may restrict or terminate your access to this website at our discretion, for example in cases of misuse. Termination of any paid product engagement will be governed by the specific service agreement applicable to you.</p>
++  },
++  {
++    heading: '14. Governing law and jurisdiction',
++    body: <p>These Terms & Conditions are governed by the laws of India, and any disputes arising from your use of this website shall be subject to the exclusive jurisdiction of the courts of Jaipur, Rajasthan.</p>
++  },
++  {
++    heading: '15. Contact us',
++    body: (
++      <p>
++        Questions about these Terms & Conditions can be sent to{' '}
++        <a href="mailto:Insignia0026@gmail.com" className="text-accent-dark font-semibold hover:underline">Insignia0026@gmail.com</a> or{' '}
++        <a href="tel:+916350210426" className="text-accent-dark font-semibold hover:underline">+91 6350210426</a>, or by writing to Orchid-407, Manglam Ananda, Sanganer, Jaipur – 302029, Rajasthan, India.
++      </p>
++    )
++  }
++];
++
++export default function TermsAndConditions() {
++  return (
++    <>
++      <header className="pt-20 pb-10 text-center">
++        <div className="max-w-wrap mx-auto px-8">
++          <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">Terms & Conditions</span>
++          <h1 className="text-4xl md:text-[52px] max-w-[700px] mx-auto mt-5">Terms for using this website</h1>
++          <p className="text-sm text-fg-soft mt-4">Last updated: September 2026</p>
++        </div>
++      </header>
++
++      <section className="pt-0 pb-8">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="max-w-[820px] mx-auto p-6 md:p-7 bg-surface2 border border-border rounded-md text-[14px] text-fg-muted">
++            This page is a general Terms & Conditions template for a business website. Specific commercial terms (pricing, subscription length, refunds, SLAs) are not included here and should be confirmed in your individual service agreement. We recommend having this page reviewed by a legal professional before relying on it for binding commercial terms.
++          </div>
++        </div>
++      </section>
++
++      <section className="pt-0">
++        <div className="max-w-wrap mx-auto px-8">
++          <div className="max-w-[820px] mx-auto text-[15px] leading-relaxed text-fg-muted">
++            {sections.map((s, i) => (
++              <div key={s.heading} className={`py-6.5 border-t border-border ${i === sections.length - 1 ? 'border-b' : ''}`}>
++                <h3 className="text-[18px] text-fg mb-2.5 font-bold">{s.heading}</h3>
++                {s.body}
++              </div>
++            ))}
++          </div>
++        </div>
++      </section>
++    </>
++  );
++}
+diff --git a/components/layout/Footer.tsx b/components/layout/Footer.tsx
+index 6f0e041..4bf4e88 100644
+--- a/components/layout/Footer.tsx
++++ b/components/layout/Footer.tsx
+@@ -5,7 +5,7 @@ const cols = [
+   { title: 'Products', links: products.map(p => [p.name, p.slug] as [string, string]) },
+   { title: 'Solutions', links: [['ERP Software', '/solutions#erp'], ['AI Automation', '/solutions#ai'], ['Digital Marketing', '/solutions#marketing'], ['Business Intelligence', '/solutions#industries']] as [string, string][] },
+   { title: 'Industries', links: [['Manufacturing', '/solutions#industries'], ['Trading', '/solutions#industries'], ['Distribution', '/solutions#industries'], ['Retail', '/solutions#industries'], ['MSMEs', '/solutions#industries']] as [string, string][] },
+-  { title: 'Company', links: [['About', '/contact'], ['Contact', '/contact'], ['Privacy Policy', '/contact'], ['Terms', '/contact']] as [string, string][] }
++  { title: 'Company', links: [['About', '/about'], ['Contact', '/contact'], ['Privacy Policy', '/privacy-policy'], ['Terms', '/terms-and-conditions']] as [string, string][] }
+ ];
+ 
+ export function Footer() {
+@@ -17,6 +17,8 @@ export function Footer() {
+             {/* eslint-disable-next-line @next/next/no-img-element */}
+             <img src="/assets/brand/insignia-lockup-full.webp" alt="INSIGNIA logo" width={960} height={918} className="h-24 w-auto object-contain" />
+             <p className="text-sm mt-4 max-w-[260px] text-[oklch(65%_.008_260)]">AI-powered ERP and business automation for manufacturers, distributors, traders and growing enterprises.</p>
++            <p className="text-sm mt-4 max-w-[260px] text-[oklch(65%_.008_260)]">Orchid-407, Manglam Ananda, Sanganer, Jaipur - 302029, Rajasthan, India</p>
++            <p className="text-sm mt-2 max-w-[260px] text-[oklch(65%_.008_260)]">Insignia0026@gmail.com · +91 6350210426</p>
+           </div>
+           {cols.map(c => (
+             <div key={c.title}>
+diff --git a/components/layout/Nav.tsx b/components/layout/Nav.tsx
+index feabaa7..4667a88 100644
+--- a/components/layout/Nav.tsx
++++ b/components/layout/Nav.tsx
+@@ -22,7 +22,7 @@ const industryLinks = [
+ 
+ const simpleLinks = [
+   ['Pricing', '/pricing'],
+-  ['About', '/contact'],
++  ['About', '/about'],
+   ['Contact', '/contact']
+ ];
+ 
+diff --git a/components/marketing/BrowserMockup.tsx b/components/marketing/BrowserMockup.tsx
+index 0ff9b97..daf2e13 100644
+--- a/components/marketing/BrowserMockup.tsx
++++ b/components/marketing/BrowserMockup.tsx
+@@ -6,9 +6,10 @@ interface Props {
+   bars?: number[];
+   donut?: boolean;
+   tilt?: boolean;
++  sampleData?: boolean;
+ }
+ 
+-export function BrowserMockup({ title, subtitle, stats, bars, donut, tilt = true }: Props) {
++export function BrowserMockup({ title, subtitle, stats, bars, donut, tilt = true, sampleData = true }: Props) {
+   return (
+     <div className={tilt ? '[perspective:1800px]' : ''}>
+       <div className={`rounded-md overflow-hidden shadow-lg border border-border bg-surface transition-transform duration-500 ${tilt ? '[transform:rotateX(8deg)_rotateY(-10deg)_rotateZ(1deg)] hover:[transform:rotateX(4deg)_rotateY(-5deg)_rotateZ(.5deg)]' : ''}`}>
+@@ -17,7 +18,12 @@ export function BrowserMockup({ title, subtitle, stats, bars, donut, tilt = true
+         </div>
+         <div className="p-7 bg-surface">
+           <div className="text-xl font-extrabold text-fg mb-1">{title}</div>
+-          <div className="text-[13px] text-fg-soft mb-5">{subtitle}</div>
++          <div className="text-[13px] text-fg-soft mb-2">{subtitle}</div>
++          {sampleData && (
++            <div className="inline-block text-[11px] font-bold uppercase tracking-wide text-fg-soft bg-surface2 border border-border rounded-full px-3 py-1 mb-3.5">
++              Illustrative · Sample Data
++            </div>
++          )}
+           <div className={`grid gap-3.5 mb-5`} style={{ gridTemplateColumns: `repeat(${stats.length},1fr)` }}>
+             {stats.map(s => (
+               <div key={s.label} className="bg-surface2 border border-border rounded-sm p-4">

@@ -8,8 +8,8 @@ import { AIAssistant } from '@/components/marketing/AIAssistant';
 import { industries as industryProfiles } from '@/lib/data/industries';
 
 const floatingCards = [
-  { label: '+32% Revenue', className: '-top-5 -left-8 [@media(min-width:768px)]:flex hidden' },
-  { label: '248 Orders Today', className: 'top-1/3 -right-10 [@media(min-width:768px)]:flex hidden' },
+  { label: '+32% Revenue (Sample)', className: '-top-5 -left-8 [@media(min-width:768px)]:flex hidden' },
+  { label: '248 Orders Today (Sample)', className: 'top-1/3 -right-10 [@media(min-width:768px)]:flex hidden' },
   { label: 'Inventory Optimized', className: 'bottom-10 -left-10 [@media(min-width:768px)]:flex hidden' },
   { label: 'AI Insight', className: '-bottom-5 right-1/4 [@media(min-width:768px)]:flex hidden' }
 ];
