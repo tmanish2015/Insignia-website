@@ -9,9 +9,29 @@ import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.insigniatech.in';
+
 export const metadata: Metadata = {
-  title: 'INSIGNIA — Transforming Businesses with AI',
-  description: 'One platform for ERP, AI Automation, and Digital Marketing. INSIGNIA helps manufacturers, distributors and enterprises grow revenue with intelligent software.'
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'INSIGNIA — Transforming Businesses with AI',
+    template: '%s | INSIGNIA',
+  },
+  description:
+    'One platform for ERP, AI Automation, and Digital Marketing. INSIGNIA helps manufacturers, distributors and enterprises grow revenue with intelligent software.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    siteName: 'INSIGNIA',
+    type: 'website',
+    url: siteUrl,
+    title: 'INSIGNIA — Transforming Businesses with AI',
+    description:
+      'ERP, AI Automation, and Digital Marketing solutions for growing businesses.',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
