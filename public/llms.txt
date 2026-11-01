@@ -1,0 +1,27 @@
+# INSIGNIA
+
+> INSIGNIA (also known as Insignia Tech) is a software company in Jaipur, Rajasthan, India. It builds business software for Indian traders, distributors and manufacturers: ERP products, AI automation and digital marketing.
+
+## Contact
+
+- Website: https://www.insigniatech.in
+- Email: Insignia0026@gmail.com
+- Phone / WhatsApp: +91 6350210426
+- Address: Orchid-407, Manglam Ananda, Sanganer, Jaipur, Rajasthan 302029, India
+- Languages: English, Hindi
+
+## Products
+
+- [TradeFlow ERP](https://www.insigniatech.in/tradeflow): Cloud ERP for traders, wholesalers and distributors in India. Sales, purchases, multi-location inventory, customer and supplier records, warehouse management and business reports in one system.
+- [TransformerFlow](https://www.insigniatech.in/transformerflow): ERP for manufacturing. Production management, bill of materials, raw material management, production planning, quality control, costing and machinery rental tracking.
+- [Order Sathi](https://www.insigniatech.in/order-sathi): Order and inventory management for online sellers. Multi-channel order management, packing and dispatch, barcode scanning and merchant tax report reconciliation. Amazon orders sync today; other channels are on the roadmap.
+
+## Company pages
+
+- [About](https://www.insigniatech.in/about)
+- [Contact / book a demo](https://www.insigniatech.in/contact)
+- [Pricing](https://www.insigniatech.in/pricing)
+
+## Note on naming
+
+TradeFlow ERP by INSIGNIA (Jaipur, India) is not related to any other company named Tradeflow or TradeflowAI.

@@ -40,11 +40,12 @@ const featureDescriptions: Record<string, string> = {
   'Merchant Tax Report Reconciliation': 'Reconcile marketplace settlement and MTR reports against your orders automatically.'
 };
 
-export function ProductLandingPage({ productId, dashboardTitle, dashboardSubtitle, dashboardStats }: {
+export function ProductLandingPage({ productId, dashboardTitle, dashboardSubtitle, dashboardStats, children }: {
   productId: Product['id'];
   dashboardTitle: string;
   dashboardSubtitle: string;
   dashboardStats: { label: string; value: string }[];
+  children?: React.ReactNode;
 }) {
   const product = products.find(p => p.id === productId)!;
   const others = products.filter(p => p.id !== productId);
@@ -146,6 +147,8 @@ export function ProductLandingPage({ productId, dashboardTitle, dashboardSubtitl
           </div>
         </div>
       </section>
+
+      {children}
 
       <section>
         <div className="max-w-wrap mx-auto px-8">

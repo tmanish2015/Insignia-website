@@ -5,6 +5,7 @@ import { RecaptchaProvider } from '@/components/providers/RecaptchaProvider';
 import { Nav } from '@/components/layout/Nav';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppWidget } from '@/components/chat/WhatsAppWidget';
+import { JsonLd } from '@/components/seo/JsonLd';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -20,10 +21,6 @@ export const metadata: Metadata = {
   },
   description:
     'One platform for ERP, AI Automation, and Digital Marketing. INSIGNIA helps manufacturers, distributors and enterprises grow revenue with intelligent software.',
-  robots: {
-    index: true,
-    follow: true,
-  },
   openGraph: {
     siteName: 'INSIGNIA',
     type: 'website',
@@ -31,6 +28,34 @@ export const metadata: Metadata = {
     title: 'INSIGNIA — Transforming Businesses with AI',
     description:
       'ERP, AI Automation, and Digital Marketing solutions for growing businesses.',
+  },
+};
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: 'INSIGNIA',
+  alternateName: 'Insignia Tech',
+  url: siteUrl,
+  logo: `${siteUrl}/assets/brand/insignia-lockup-full.webp`,
+  email: 'Insignia0026@gmail.com',
+  telephone: '+91-6350210426',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Orchid-407, Manglam Ananda, Sanganer',
+    addressLocality: 'Jaipur',
+    addressRegion: 'Rajasthan',
+    postalCode: '302029',
+    addressCountry: 'IN',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    telephone: '+91-6350210426',
+    email: 'Insignia0026@gmail.com',
+    areaServed: 'IN',
+    availableLanguage: ['English', 'Hindi'],
   },
 };
 
@@ -50,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans bg-bg text-fg overflow-x-hidden">
+        <JsonLd data={organizationJsonLd} />
         {recaptchaSiteKey ? (
           <RecaptchaProvider siteKey={recaptchaSiteKey}>{body}</RecaptchaProvider>
         ) : body}
