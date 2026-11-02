@@ -15,6 +15,7 @@
 - [TradeFlow ERP](https://www.insigniatech.in/tradeflow): Cloud ERP for traders, wholesalers and distributors in India. Sales, purchases, multi-location inventory, customer and supplier records, warehouse management and business reports in one system.
 - [TransformerFlow](https://www.insigniatech.in/transformerflow): ERP for manufacturing. Production management, bill of materials, raw material management, production planning, quality control, costing and machinery rental tracking.
 - [Order Sathi](https://www.insigniatech.in/order-sathi): Order and inventory management for online sellers. Multi-channel order management, packing and dispatch, barcode scanning and merchant tax report reconciliation. Amazon orders sync today; other channels are on the roadmap.
+- [PeopleFlow](https://www.insigniatech.in/peopleflow): HRMS and payroll ERP. Employee records, organization structure, shifts and rosters, attendance, leave management, payroll with payslips, holidays, announcements and role-based access.
 
 ## Company pages
 

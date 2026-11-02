@@ -6,19 +6,22 @@ import { ProductLogo } from './ProductLogo';
 const glow: Record<Product['color'], string> = {
   tradeflow: 'hover:shadow-[0_0_80px_-16px_oklch(58%_.24_293_/_.55)] hover:border-tradeflow/50',
   transformerflow: 'hover:shadow-[0_0_80px_-16px_oklch(62%_.21_259_/_.55)] hover:border-transformerflow/50',
-  ordersathi: 'hover:shadow-[0_0_80px_-16px_oklch(55%_.26_296_/_.55)] hover:border-ordersathi/50'
+  ordersathi: 'hover:shadow-[0_0_80px_-16px_oklch(55%_.26_296_/_.55)] hover:border-ordersathi/50',
+  peopleflow: 'hover:shadow-[0_0_80px_-16px_oklch(72%_.18_160_/_.55)] hover:border-peopleflow/50'
 };
 
 const ctaColor: Record<Product['color'], string> = {
   tradeflow: 'text-tradeflow',
   transformerflow: 'text-transformerflow',
-  ordersathi: 'text-ordersathi'
+  ordersathi: 'text-ordersathi',
+  peopleflow: 'text-peopleflow'
 };
 
 const categoryColor: Record<Product['color'], string> = {
   tradeflow: 'text-tradeflow bg-tradeflow-soft border-tradeflow/40',
   transformerflow: 'text-transformerflow bg-transformerflow-soft border-transformerflow/40',
-  ordersathi: 'text-ordersathi bg-ordersathi-soft border-ordersathi/40'
+  ordersathi: 'text-ordersathi bg-ordersathi-soft border-ordersathi/40',
+  peopleflow: 'text-peopleflow bg-peopleflow-soft border-peopleflow/40'
 };
 
 export function ProductCard({ product }: { product: Product }) {

@@ -14,6 +14,7 @@ const routes = [
   '/tradeflow',
   '/transformerflow',
   '/order-sathi',
+  '/peopleflow',
   '/products/fabflow-erp',
   '/products/ai-automation',
   '/products/digital-marketing',

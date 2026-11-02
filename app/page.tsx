@@ -91,10 +91,10 @@ export default function Home() {
         <div className="max-w-wrap mx-auto px-8">
           <div className="max-w-[640px] mx-auto mb-16 text-center">
             <span className="text-xs font-bold uppercase tracking-wide text-accent-dark bg-accent-soft px-4 py-1.5 rounded-full border border-accent/40">ERP Products</span>
-            <h2 className="text-[42px] mt-5">One Platform. Three Powerful ERPs.</h2>
+            <h2 className="text-[42px] mt-5">One Platform. Four Powerful ERPs.</h2>
             <p className="mt-4 text-lg text-fg-muted">Purpose-built business software for every stage of your growth.</p>
           </div>
-          <div className="grid grid-cols-1 [@media(min-width:768px)]:grid-cols-2 [@media(min-width:1100px)]:grid-cols-3 gap-7">
+          <div className="grid grid-cols-1 [@media(min-width:768px)]:grid-cols-2 gap-7">
             {products.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
           <div className="max-w-[640px] mx-auto mt-20 mb-14 text-center">

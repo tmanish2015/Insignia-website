@@ -26,7 +26,9 @@ const config: Config = {
         transformerflow: 'oklch(62% .21 259)',
         'transformerflow-soft': 'oklch(27% .08 259)',
         ordersathi: 'oklch(55% .26 296)',
-        'ordersathi-soft': 'oklch(27% .08 296)'
+        'ordersathi-soft': 'oklch(27% .08 296)',
+        peopleflow: 'oklch(72% .18 160)',
+        'peopleflow-soft': 'oklch(27% .07 160)'
       },
       borderRadius: { lg: '28px', md: '18px', sm: '12px' },
       boxShadow: {

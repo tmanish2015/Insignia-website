@@ -4,13 +4,13 @@ export interface PlatformStatus {
 }
 
 export interface Product {
-  id: 'tradeflow' | 'transformerflow' | 'order-sathi';
+  id: 'tradeflow' | 'transformerflow' | 'order-sathi' | 'peopleflow';
   slug: string;
   name: string;
   subtitle: string;
   category: string;
   description: string;
-  color: 'tradeflow' | 'transformerflow' | 'ordersathi';
+  color: 'tradeflow' | 'transformerflow' | 'ordersathi' | 'peopleflow';
   logoSrc: string;
   logoWidth: number;
   logoHeight: number;
@@ -83,6 +83,22 @@ export const products: Product[] = [
       { name: 'WhatsApp', status: 'planned' },
       { name: '& More', status: 'planned' }
     ]
+  },
+  {
+    id: 'peopleflow',
+    slug: '/peopleflow',
+    name: 'PeopleFlow',
+    subtitle: 'HRMS & Payroll ERP',
+    category: 'HRMS & PAYROLL ERP',
+    description: 'Manage employees, attendance, leave and payroll for your whole team from one HR system.',
+    color: 'peopleflow',
+    logoSrc: '/assets/brands/peopleflow-logo.svg',
+    logoWidth: 330,
+    logoHeight: 64,
+    features: ['Employee Management', 'Attendance Management', 'Leave Management', 'Payroll & Payslips', 'Shifts & Rosters', 'Organization Structure', 'Holidays & Announcements', 'User Roles & Access'],
+    workflow: ['Employees', 'Shifts', 'Attendance', 'Leave', 'Payroll', 'Payslips'],
+    heroHeadline: 'One Flow for Your Whole Team',
+    heroDescription: 'Employees, attendance, leave and payroll in one HRMS and Payroll ERP, so you spend less time chasing and more time running the business.'
   }
 ];
 

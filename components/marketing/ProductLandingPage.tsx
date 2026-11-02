@@ -8,13 +8,15 @@ import { products, type Product } from '@/lib/products';
 const badgeClass: Record<Product['color'], string> = {
   tradeflow: 'text-tradeflow bg-tradeflow-soft border-tradeflow/40',
   transformerflow: 'text-transformerflow bg-transformerflow-soft border-transformerflow/40',
-  ordersathi: 'text-ordersathi bg-ordersathi-soft border-ordersathi/40'
+  ordersathi: 'text-ordersathi bg-ordersathi-soft border-ordersathi/40',
+  peopleflow: 'text-peopleflow bg-peopleflow-soft border-peopleflow/40'
 };
 
 const dotClass: Record<Product['color'], string> = {
   tradeflow: 'bg-tradeflow',
   transformerflow: 'bg-transformerflow',
-  ordersathi: 'bg-ordersathi'
+  ordersathi: 'bg-ordersathi',
+  peopleflow: 'bg-peopleflow'
 };
 
 const featureDescriptions: Record<string, string> = {
@@ -37,7 +39,15 @@ const featureDescriptions: Record<string, string> = {
   'Packing & Dispatch': 'Barcode-driven packing and dispatch tracking.',
   'Barcode Scanning': 'Scan-driven picking, packing and stock counts.',
   'Supplier & Purchase Management': 'Manage supplier records and purchase history.',
-  'Merchant Tax Report Reconciliation': 'Reconcile marketplace settlement and MTR reports against your orders automatically.'
+  'Merchant Tax Report Reconciliation': 'Reconcile marketplace settlement and MTR reports against your orders automatically.',
+  'Employee Management': 'One complete profile per employee with department, designation and login.',
+  'Attendance Management': 'Daily attendance from imported punches, with corrections approved in one place.',
+  'Leave Management': 'Leave requests, balances and approvals handled from a single screen.',
+  'Payroll & Payslips': 'Salary structures, payroll runs from draft to approved to locked, and payslips for everyone.',
+  'Shifts & Rosters': 'Set shifts, weekly offs and attendance rules once for the whole team.',
+  'Organization Structure': 'Locations, departments and designations in one clear structure.',
+  'Holidays & Announcements': 'Company holidays and announcements published to your team.',
+  'User Roles & Access': 'Roles decide who can see and do what, including who can see salaries.'
 };
 
 export function ProductLandingPage({ productId, dashboardTitle, dashboardSubtitle, dashboardStats, children }: {
